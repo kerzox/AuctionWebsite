@@ -11,31 +11,6 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <title>Phone Auction</title>
-    <style>
-        .bg-image {
-            background-image: url("https://i.pinimg.com/originals/c0/09/0b/c0090b99d7b3575756a5a119fb0e0d38.jpg");
-            height: 40vh;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
-
-        .masthead {
-            height: 60vh;
-            min-height: 500px;
-            background-image: url('https://i1.wp.com/www.deteched.com/wp-content/uploads/2017/11/1-deteched-minimailist-mountain.jpg?fit=3840%2C2160');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-        .remove_link_colour,
-        .remove_link_colour:hover,
-        .remove_link_colour:active {
-            color: inherit;
-            text-decoration: none;
-        }
-    </style>
 </head>
 
 <body class = "d-flex flex-column min-vh-100">
@@ -74,39 +49,9 @@
     </nav>
     <!--/NAVIGATION-->
 
-    <div class="row no-gutters m-2 ml-2 mb-2">
 
-    </div>
-
-    <div class="modal fade" id="BidModal" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalLabel">Bidding</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text">$</span>
-                        </div>
-                        <input type="text" class="form-control" aria-label="Amount (to the nearest dollar)">
-                        <div class="input-group-append">
-                            <span class="input-group-text">.00</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
+    {% block content %}
+    {% end content %}
 
     <!--FOOTER-->
     <!-- Footer -->
