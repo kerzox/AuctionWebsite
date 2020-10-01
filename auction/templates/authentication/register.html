@@ -1,0 +1,39 @@
+
+{% extends 'base.html' %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md">
+
+        <h1>Register</h1>
+
+        <form action="" , method="POST">
+          {{form.csrf_token()}}
+          
+          {{ wtf.form_field(form.email_id, class='form-control', 
+          placeholder='Email') }}
+  
+          {{ wtf.form_field(form.password, class='form-control', 
+          placeholder='Password') }}
+
+          {{ wtf.form_field(form.confirm, class='form-control', 
+          placeholder='Confirm Password') }}
+  
+          {{ form.submit(class="btn btn-primary")}}
+          </form>
+  
+          <button class="btn btn-info mt-3"><a class="remove_link_colour" href="{{url_for('authentication.login')}}">Login Here</a></button>
+        
+      </div>
+      <div class="col-md-3">
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
