@@ -1,0 +1,21 @@
+.bg-image {
+    background-image: url("https://i.pinimg.com/originals/c0/09/0b/c0090b99d7b3575756a5a119fb0e0d38.jpg");
+    height: 40vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.masthead {
+    height: 60vh;
+    min-height: 500px;
+    background-image: url('https://wallpaperaccess.com/full/446984.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.remove_link_colour, .remove_link_colour:hover, .remove_link_colour:active {
+    color: inherit;
+    text-decoration: none;
+}

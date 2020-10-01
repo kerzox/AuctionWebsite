@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row mx-auto pt-5">
+    <div class="col-lg py-2">
+      <h2>You are logged in as {{user.email}}</h2>
+      <form action="/logoutrequest" , method="POST"><button type="submit" class="btn btn-lg btn-danger">Logout</button></form>
+    </div>
+  </div>
+</div>
+{% endblock %}
