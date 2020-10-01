@@ -1,4 +1,7 @@
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+
+db=SQLAlchemy()
 
 def create_app():
     print(__name__)
@@ -7,6 +10,8 @@ def create_app():
 
     #set the app configuration data 
     app.config['SQLALCHEMY_DATABASE_URI']='DATABASE_URL'
+    #initialize postgres
+    db.init_app(app)
 
     from . import views
     app.register_blueprint(views.mainbp)
