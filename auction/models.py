@@ -1,4 +1,4 @@
-class Destination:
+class Item:
     def __init__(self, name, description, image, currency):
         self.name = name
         self.description = description
