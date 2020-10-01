@@ -11,7 +11,7 @@ def create_app():
     from . import views
     app.register_blueprint(views.mainbp)
 
-    from . import destinations
-    app.register_blueprint(destinations.bp)
+    from . import items
+    app.register_blueprint(items.bp)
 
     return app
