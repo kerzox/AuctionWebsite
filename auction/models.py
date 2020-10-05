@@ -1,3 +1,5 @@
+from . import db
+
 class Item:
     def __init__(self, name, description, image, currency):
         self.name = name
@@ -15,8 +17,3 @@ class Comment:
         self.user = user
         self.text = text
         self.created_at = created_at
-
-class Login:
-    def __init__(self, email, pwd):
-        self.email = email
-        self.pwd = pwd
