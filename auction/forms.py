@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField
-from wtforms.validators import InputRequired, Length, EqualTo, Email
+from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, DecimalField
+from wtforms.validators import InputRequired, Length, EqualTo, Email, NumberRange
 
   
 class CommentForm(FlaskForm):
@@ -24,11 +24,11 @@ class RegisterForm(FlaskForm):
     submit = SubmitField("Register")
 
 class CreateListingForm(FlaskForm):
-      name = StringField('Title', validators=[InputRequired('Title is required')])
+      title = StringField('Title', validators=[InputRequired('Title is required')])
       # adding two validators, one to ensure input is entered and other to check if the 
       #description meets the length requirements
       description = TextAreaField('Description', 
                 validators=[InputRequired('Description Required - MAX 300 characters'), 
                 Length(min=10, max=300, message='Description too small or too large!')])
-      
+      #startingBid = DecimalField('Starting Bid', validators=[InputRequired('Starting Bid is required'), NumberRange(min=1, max=10, message='Value must be more than $1')])
       submit = SubmitField("Create")
