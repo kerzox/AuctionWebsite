@@ -15,6 +15,8 @@ def create_app():
     #initialize postgres
     db.init_app(app)
 
+    bootstrap = Bootstrap(app)
+
     from . import views
     app.register_blueprint(views.mainbp)
 
@@ -23,7 +25,5 @@ def create_app():
 
     from .auth import authentication_blueprint
     app.register_blueprint(authentication_blueprint)
-
-    bootstrap = Bootstrap(app)
 
     return app

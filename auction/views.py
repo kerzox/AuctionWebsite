@@ -1,5 +1,5 @@
-from flask import Blueprint, render_template, request, session
-from .models import Login
+from flask import Blueprint, render_template, request, session, redirect, url_for
+from .models import Item, Login
 
 mainbp = Blueprint('main', __name__)
 
@@ -7,11 +7,21 @@ email = "Login"
 pwd = "pwd"
 user = Login(email, pwd)
 
+
 @mainbp.route('/')
 def index():
-    print(request.values.get('email'))
-    print(request.values.get('pwd'))
-    return render_template('index.html', user=user)
+    items = Item.query.all()
+    return render_template('index.html', items=items)
+
+
+@mainbp.route('/search')
+def search():
+    if request.args['search']:
+        it = "%" + request.args['search'] + '%'
+        items = Item.query.filter(Item.name.like(it)).all()
+        return render_template('index.html', items=items)
+
+    return redirect(url_for('main.index'))
 
 
 @mainbp.route('/watchlist')
