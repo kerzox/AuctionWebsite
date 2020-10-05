@@ -1,3 +1,4 @@
+import os
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
@@ -11,7 +12,7 @@ def create_app():
     app.secret_key = 'Secret'
 
     #set the app configuration data 
-    app.config['SQLALCHEMY_DATABASE_URI']='DATABASE_URL'
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
     #initialize postgres
     db.init_app(app)
 
