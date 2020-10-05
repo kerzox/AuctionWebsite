@@ -22,3 +22,13 @@ class RegisterForm(FlaskForm):
     confirm = PasswordField("Confirm Password", validators=[EqualTo('password', message="Passwords should match")])
     #submit button
     submit = SubmitField("Register")
+
+class CreateListingForm(FlaskForm):
+      name = StringField('Title', validators=[InputRequired('Title is required')])
+      # adding two validators, one to ensure input is entered and other to check if the 
+      #description meets the length requirements
+      description = TextAreaField('Description', 
+                validators=[InputRequired('Description Required - MAX 300 characters'), 
+                Length(min=10, max=300, message='Description too small or too large!')])
+      
+      submit = SubmitField("Create")

@@ -1,27 +1,14 @@
-from flask import Blueprint, render_template, request, session, redirect, url_for
-from .models import Item, Login
+from flask import Blueprint, render_template, request, session, url_for, redirect
+from .forms import CreateListingForm
 
 mainbp = Blueprint('main', __name__)
-
-email = "Login"
-pwd = "pwd"
-user = Login(email, pwd)
 
 
 @mainbp.route('/')
 def index():
-    items = Item.query.all()
-    return render_template('index.html', items=items)
-
-
-@mainbp.route('/search')
-def search():
-    if request.args['search']:
-        it = "%" + request.args['search'] + '%'
-        items = Item.query.filter(Item.name.like(it)).all()
-        return render_template('index.html', items=items)
-
-    return redirect(url_for('main.index'))
+    print(request.values.get('email'))
+    print(request.values.get('pwd'))
+    return render_template('index.html')
 
 
 @mainbp.route('/watchlist')
@@ -29,9 +16,17 @@ def watchlist():
     return render_template('watchlist.html')
 
 
-@mainbp.route('/mylistings')
+@mainbp.route('/mylistings', methods = ['GET', 'POST'])
 def create():
-    return render_template('mylistings.html')
+
+    create_form = CreateListingForm()
+    if create_form.validate_on_submit():
+        print('form is valid')
+        return redirect('mylistings')
+    else:
+        print("form is not valid")
+    return render_template('mylistings.html', form=create_form)
+    
 
 
 @mainbp.route('/listings')
