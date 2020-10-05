@@ -10,9 +10,10 @@ def create_app():
     print(__name__)
     app = Flask(__name__)
     app.secret_key = 'Secret'
+    
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
-    #set the app configuration data 
-    app.config[SQLALCHEMY_DATABASE_URI]= os.environ['DATABASE_URL']
+
     #initialize postgres
     db.init_app(app)
 
