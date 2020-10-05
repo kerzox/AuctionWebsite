@@ -17,7 +17,7 @@
 <body class="d-flex flex-column min-vh-100">
     <!--NAVIGATION-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark border-top border-bottom border-dark">
-        <a class="navbar-brand" href="http://127.0.0.1:5000/"><img
+        <a class="navbar-brand" href="{{url_for('main.index')}}"><img
                 src="https://pngimg.com/uploads/phone/phone_PNG48927.png" width="30" height="30"
                 class="d-inline-block align-top mr-2" alt="">
             Phone Auctions
@@ -29,16 +29,16 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
-                    <a class="nav-link" href="/">Home</a>
+                    <a class="nav-link" href="{{url_for('main.index')}}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/mylistings">Create Listing</a>
+                    <a class="nav-link" href="{{url_for('main.create')}}">Create Listing</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/listings">Listings</a>
+                    <a class="nav-link" href="{{url_for('main.listings')}}">Listings</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/watchlist">Watchlist</a>
+                    <a class="nav-link" href="{{url_for('main.watchlist')}}">Watchlist</a>
                 </li>
             </ul>
             <ul class="navbar-nav mr-3">
