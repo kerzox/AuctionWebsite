@@ -19,10 +19,20 @@ class Item(db.Model):
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(200), nullable=False)
     image = db.Column(db.String(400))
-    currency = db.Column(db.String(3), nullable=False)
+    start_currency = db.Column(db.DECIMAL, nullable=False)
+    cur_currency = db.Column(db.DECIMAL, nullable=False)
+    bids = db.relationship('Bids', backref='items')
 
     def __repr__(self):
         return "<Name: {}>".format(self.name)
+
+# Bid database model
+class Bids(db.Model):
+    __tablename__= 'bids'
+    id = db.Column(db.Integer, primary_key=True)
+    items_id = db.Column(db.Integer, db.ForeignKey('items.id'))
+    bid_date = db.Column(db.DateTime, nullable=False)
+    bid_amount = db.Column(db.DECIMAL, nullable=False)
 
 
 # Login class

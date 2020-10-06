@@ -11,8 +11,11 @@ def create_app():
     app = Flask(__name__)
     app.secret_key = 'Secret'
     
+    # Heroku postgresql
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
+    # Will's local postgresql
+    #app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://postgres:pappin78w@localhost:5432/postgres"
 
     #initialize postgres
     db.init_app(app)
