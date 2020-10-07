@@ -37,6 +37,9 @@ def create_app():
     from . import views
     app.register_blueprint(views.mainbp)
 
+    from . import listings
+    app.register_blueprint(listings.listingbp)
+
     from . import items
     app.register_blueprint(items.bp)
 

@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     address = db.Column(db.String(200), index=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
     # Relationships
-    bids = db.relationship('Bids', backref='user')
+    bids = db.relationship('Bids', backref='users')
 
 
 # Item database model
@@ -27,7 +27,7 @@ class Item(db.Model):
     status = db.Column(db.Boolean, default=True, nullable=False)
     start_currency = db.Column(db.DECIMAL, nullable=False)
     # Relationships
-    bids = db.relationship('Bids', backref='item')
+    bids = db.relationship('Bids', backref='items')
 
     def __repr__(self):
         return "<Name: {}>".format(self.name)

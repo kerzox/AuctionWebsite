@@ -28,10 +28,10 @@ class CreateListingForm(FlaskForm):
       # adding two validators, one to ensure input is entered and other to check if the 
       #description meets the length requirements
       description = TextAreaField('Description', 
-                validators=[InputRequired('Description Required - MAX 300 characters'), 
-                Length(min=10, max=300, message='Description too small or too large!')])
+                                   validators=[InputRequired('Description Required - MAX 300 characters'), 
+                                   Length(min=10, max=300, message='Description too small or too large!')])
       image = FileField('Upload Image', 
-                    validators=[FileRequired(message="Image can not be empty"),
-                    FileAllowed(ALLOWED_FILE, message="ONLY supports png, jpg, PNG, JPG")])
+                        validators=[FileRequired(message="Image can not be empty"),
+                        FileAllowed(ALLOWED_FILE, message="ONLY supports png, jpg, PNG, JPG")])
       start_bid = DecimalField('Starting Bid', validators=[InputRequired('Starting Bid is required'), NumberRange(min=1, max=99999, message='Value must bebetween $1 and $99999')])
       submit = SubmitField("Create")
