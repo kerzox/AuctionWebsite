@@ -14,15 +14,18 @@
         <form action="" method="post" class="form" enctype="multipart/form-data" role="form">
           {{form.csrf_token()}}
 
-          {{ wtf.form_field(form.title) }}
+          {{ wtf.form_field(form.title, class='form-control', 
+          placeholder='Title') }}
 
-          {{ wtf.form_field(form.description) }}
+          {{ wtf.form_field(form.description, class='form-control', 
+          placeholder='Description') }}
 
           {{ wtf.form_field(form.image)}}
 
-          {{ wtf.form_field(form.start_bid) }}
+          {{ wtf.form_field(form.start_bid, class='form-control', 
+          placeholder='Starting Bid') }}
           
-          {{ form.submit()}}
+          {{ form.submit(class="btn btn-primary")}}
           </form>
 
       </div>
