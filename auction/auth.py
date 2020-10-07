@@ -43,6 +43,8 @@ def register():
         username = register_form.user_name.data
         email = register_form.email_id.data
         pwd = register_form.password.data
+        contact = register_form.contact_no.data
+        address = register_form.address.data
         # check if username already exists
         u = User.query.filter_by(name=username).first() # returns user object or NONE
         if u:
@@ -50,7 +52,7 @@ def register():
             return redirect(url_for('authentication.register', form=register_form))
         # if username unique, create new user
         pwd_hash = generate_password_hash(pwd)
-        new_user = User(name=username, emailid=email, password_hash=pwd_hash)
+        new_user = User(name=username, emailid=email, password_hash=pwd_hash, contactno=contact, address=address)
 
         db.session.add(new_user)
         db.session.commit()

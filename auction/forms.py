@@ -14,6 +14,8 @@ class LoginForm(FlaskForm):
 class RegisterForm(FlaskForm):
     user_name=StringField("Username", validators=[InputRequired('Username is required')])
     email_id = StringField("Email Address", validators=[InputRequired('Email is required'), Email("Please enter a valid email")])
+    contact_no = StringField("Contact Number", validators=[InputRequired('Contact Number is required')])
+    address = StringField("Address", validators=[InputRequired('Address is required')])
     
     #linking two fields - password should be equal to data entered in confirm
     password=PasswordField("Password", validators=[InputRequired('Password is required')])
@@ -31,6 +33,5 @@ class CreateListingForm(FlaskForm):
       image = FileField('Upload Image', 
                     validators=[FileRequired(message="Image can not be empty"),
                     FileAllowed(ALLOWED_FILE, message="ONLY supports png, jpg, PNG, JPG")])
-      start_bid = StringField('Starting Bid', validators=[InputRequired('Starting bid is required')])
-      #startingBid = DecimalField('Starting Bid', validators=[InputRequired('Starting Bid is required'), NumberRange(min=1, max=10, message='Value must be more than $1')])
+      start_bid = DecimalField('Starting Bid', validators=[InputRequired('Starting Bid is required'), NumberRange(min=1, max=99999, message='Value must bebetween $1 and $99999')])
       submit = SubmitField("Create")
