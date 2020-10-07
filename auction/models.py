@@ -22,6 +22,7 @@ class Item(db.Model):
     description = db.Column(db.String(200), nullable=False)
     image = db.Column(db.String(400))
     category = db.Column(db.String(50), nullable=False)
+    status = db.Column(db.Boolean, default=True, nullable=False)
     start_currency = db.Column(db.DECIMAL, nullable=False)
     # Relationships
     bids = db.relationship('Bids', backref='item')
