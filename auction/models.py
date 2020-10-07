@@ -10,6 +10,8 @@ class User(db.Model, UserMixin):
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
     emailid = db.Column(db.String(100), index=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
+    # Relationships
+    bids = db.relationship('Bids', backref='user')
 
 
 # Item database model
@@ -19,9 +21,10 @@ class Item(db.Model):
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(200), nullable=False)
     image = db.Column(db.String(400))
+    category = db.Column(db.String(50), nullable=False)
     start_currency = db.Column(db.DECIMAL, nullable=False)
-    cur_currency = db.Column(db.DECIMAL, nullable=False)
-    bids = db.relationship('Bids', backref='items')
+    # Relationships
+    bids = db.relationship('Bids', backref='item')
 
     def __repr__(self):
         return "<Name: {}>".format(self.name)
@@ -30,9 +33,11 @@ class Item(db.Model):
 class Bids(db.Model):
     __tablename__= 'bids'
     id = db.Column(db.Integer, primary_key=True)
-    items_id = db.Column(db.Integer, db.ForeignKey('items.id'))
-    bid_date = db.Column(db.DateTime, nullable=False)
     bid_amount = db.Column(db.DECIMAL, nullable=False)
+    bid_date = db.Column(db.DateTime, nullable=False)
+    # Foreign Keys
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    item_id = db.Column(db.Integer, db.ForeignKey('items.id'))
 
 
 # Login class

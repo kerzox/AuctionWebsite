@@ -16,7 +16,12 @@ def watchlist():
     return render_template('watchlist.html')
 
 
-@mainbp.route('/mylistings', methods = ['GET', 'POST'])
+@mainbp.route('/mylistings')
+def mylistings():
+
+    return render_template('mylistings.html')
+
+@mainbp.route('/create', methods = ['GET', 'POST'])
 def create():
 
     create_form = CreateListingForm()
@@ -25,7 +30,7 @@ def create():
         return redirect('mylistings')
     else:
         print("form is not valid")
-    return render_template('mylistings.html', form=create_form)
+    return render_template('create.html', form=create_form)
     
 
 

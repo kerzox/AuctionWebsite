@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% import "bootstrap/wtf.html" as wtf %}
+{% block content %}
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md">
+
+        <h1>Create a Listing</h1>
+
+        <form action="" method="post" class="form" enctype="multipart/form-data" role="form">
+          {{form.csrf_token()}}
+
+          {{ wtf.form_field(form.title) }}
+
+          {{ wtf.form_field(form.description) }}
+
+          {{ wtf.form_field(form.image)}}
+
+          {{ wtf.form_field(form.start_bid) }}
+          
+          {{ form.submit()}}
+          </form>
+
+      </div>
+      <div class="col-md-3">
+
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

@@ -15,6 +15,9 @@
         <form action="" , method="POST">
           {{form.csrf_token()}}
           
+          {{ wtf.form_field(form.user_name, class='form-control', 
+          placeholder='Username') }}
+
           {{ wtf.form_field(form.email_id, class='form-control', 
           placeholder='Email') }}
   

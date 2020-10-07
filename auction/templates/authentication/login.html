@@ -14,8 +14,8 @@
         <form action="" , method="POST">
         {{form.csrf_token()}}
         
-        {{ wtf.form_field(form.email, class='form-control', 
-        placeholder='Email') }}
+        {{ wtf.form_field(form.user_name, class='form-control', 
+        placeholder='Username') }}
 
         {{ wtf.form_field(form.password, class='form-control', 
         placeholder='Password') }}
