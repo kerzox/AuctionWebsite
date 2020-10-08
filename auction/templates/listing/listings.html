@@ -19,7 +19,7 @@
     <div class="col-md bg-dark pt-3 pl-3 pr-3 ml-1 mt-1 justify-content-center">
         <div class="row">
             <div class="col-md-3">
-                <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}">
+                <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}" method="post">
                     {{ wtf.quick_form(form) }}
                 </form>
             </div>
