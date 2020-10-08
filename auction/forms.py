@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, DecimalField
+from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, DecimalField, SelectField
 from wtforms.validators import InputRequired, Length, EqualTo, Email, NumberRange
-from flask_wtf.file import FileRequired, FileField, FileAllowed
+from flask_wtf.file import FileRequired, FileField, FileAllowed, DataRequired
 
 ALLOWED_FILE = {'png', 'jpg', 'JPG', 'PNG'}  
 
@@ -25,6 +25,14 @@ class RegisterForm(FlaskForm):
 
 class CreateListingForm(FlaskForm):
       title = StringField('Title', validators=[InputRequired('Title is required')])
+
+      category = SelectField('Category', [DataRequired()], 
+                            choices=[('Apple', 'Apple'), 
+                                    ('Google', 'Google'), 
+                                    ('Samsung', 'Samsung'), 
+                                    ('Sony', 'Sony'), 
+                                    ('Oppo', 'Oppo')])
+
       # adding two validators, one to ensure input is entered and other to check if the 
       #description meets the length requirements
       description = TextAreaField('Description', 
