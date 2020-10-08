@@ -48,5 +48,16 @@ def create():
 
 @listingbp.route('/listings')
 def listings():
+
     items = Item.query.all()
     return render_template('listing/listings.html', items = items)
+
+@listingbp.route('/search')
+def search():
+    if request.args['search']:
+        cat = "%" + request.args['search'] + '%'
+        listings = Item.query.filter(Item.category == cat).all()
+        return render_template('listing/listings.html', items = listings)
+    else:
+        items = Item.query.all()
+        return redirect(url_for('listing.listings',  items = items))

@@ -1,24 +1,25 @@
 {% extends 'base.html' %}
 
 
-    {% block content %}
-    <!--HEADER-->
-    <header class="masthead overflow-hidden">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12 text-center">
-                    <h1 class="font-weight-light">Live Listings</h1>
-                </div>
+{% block content %}
+<!--HEADER-->
+<header class="masthead overflow-hidden">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+                <h1 class="font-weight-light">Live Listings</h1>
             </div>
         </div>
-    </header>
-    <!--/HEADER-->
+    </div>
+</header>
+<!--/HEADER-->
 
-    <!--Row-->
-    <div class="row no-gutters mt-2 mr-1 ml-2 mb-2">
-        <div class="col-md bg-dark pt-3 pl-3 pr-3 ml-1 mt-1 justify-content-center">
-            <div class="row">
-                <div class="col-md-3">
+<!--Row-->
+<div class="row no-gutters mt-2 mr-1 ml-2 mb-2">
+    <div class="col-md bg-dark pt-3 pl-3 pr-3 ml-1 mt-1 justify-content-center">
+        <div class="row">
+            <div class="col-md-3">
+                <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.search')}}">
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="basic-addon1">Categories</span>
@@ -33,64 +34,66 @@
                             <option>Oppo</option>
                         </select>
                     </div>
-                </div>
+                    <button type="submit" class="flex-shrink-1 btn btn-primary my-1">Submit</button>
+                </form>
             </div>
         </div>
     </div>
+</div>
 
-    <div class="row no-gutters m-2 ml-2 mb-2">
-        <div class="col-md bg-dark pt-3 pl-3 pb-3 pr-3 mr-1 ml-1 mt-1 justify-content-center">
-            {% for item in items %}
-            <div class="row bg-white pt-2 ml-1 mr-1 border">
-                <div class="col col-lg-2 mb-3">
-                    <img src="{{item.image}}"
-                        class="mx-auto img-fluid min-vh-0">
+<div class="row no-gutters m-2 ml-2 mb-2">
+    <div class="col-md bg-dark pt-3 pl-3 pb-3 pr-3 mr-1 ml-1 mt-1 justify-content-center">
+        {% for item in items %}
+        <div class="row bg-white pt-2 ml-1 mr-1 border">
+            <div class="col col-lg-2 mb-3">
+                <img src="{{item.image}}" class="mx-auto img-fluid min-vh-0">
+            </div>
+            <div class="col-lg-5 mx-auto">
+                <div class="row mx-1 mb-2">
+                    <h1><a href="{{url_for('listing.item', id=item.id)}}" class="remove_link_colour">{{item.name}}</a>
+                    </h1>
                 </div>
-                <div class="col-lg-5 mx-auto">
-                    <div class="row mx-1 mb-2">
-                        <h1><a href="{{url_for('listing.item', id=item.id)}}" class="remove_link_colour">{{item.name}}</a></h1>
-                    </div>
-                    <div class="row mx-1">
-                       {{item.description}}
-                    </div>
-                </div>
-                <div class="col-md">
-                    <h2>Starting Bid</h2>
-                    <h2><span class="badge badge-danger">$200AU</span></h2>
-                    <h2>Current Bid</h2>
-                    <h2><span class="badge badge-success">$800AU</span></h2>
-                    <h2>Number of Bids</h2>
-                    <h2><span class="badge badge-primary">131</span></h2>
-                </div>
-                <div class="col-lg text-center my-auto py-2">
-                    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
-                        data-target="#AllBids">View Bids
-                    </button>
-                    <button type="button" class="btn btn-danger btn-lg btn-block">Close Listing</button>
+                <div class="row mx-1">
+                    {{item.description}}
                 </div>
             </div>
-            {% endfor %}
-        </div>
-    </div>
-    
-    <div class="modal fade" id="AllBids" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="ModalLabel">All Bids</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <p>User - Bid - Date</p>
-                    <p>User - Bid - Date</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                </div>
+            <div class="col-md">
+                <h2>Starting Bid</h2>
+                <h2><span class="badge badge-danger">$200AU</span></h2>
+                <h2>Current Bid</h2>
+                <h2><span class="badge badge-success">$800AU</span></h2>
+                <h2>Number of Bids</h2>
+                <h2><span class="badge badge-primary">131</span></h2>
+            </div>
+            <div class="col-lg text-center my-auto py-2">
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                    data-target="#AllBids">View Bids
+                </button>
+                <button type="button" class="btn btn-danger btn-lg btn-block">Close Listing</button>
             </div>
         </div>
+        {% endfor %}
     </div>
+</div>
 
-    {% endblock %}
+<div class="modal fade" id="AllBids" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">All Bids</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>User - Bid - Date</p>
+                <p>User - Bid - Date</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
