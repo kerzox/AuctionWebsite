@@ -52,54 +52,16 @@
         <div class="col-md bg-dark pt-3 pl-3 pb-3 pr-3 ml-1 mr-1 mt-1 panel-height-4">
             <h3 class="text-white mb-3">Popular Listings</h1>
                 <ul class="list-group">
+                    {% for item in items %}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.item')}}">Apple iPhone XR - 128GB - Factory New</a>
+                        <a class="remove_link_colour" href="{{url_for('listing.item', id=item.id)}}">{{item.name}}</a>
                         <div>
                             <span class="badge badge-success">$400AU</span>
                             <span class="badge badge-primary badge-pill">211</span>
                             <span class="badge badge-success badge-pill">Ongoing</span>
                         </div>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.item')}}">Apple iPhone 6S - 64GB - 2 Years</a>
-                        <div>
-                            <span class="badge badge-success">$200AU</span>
-                            <span class="badge badge-primary badge-pill">115</span>
-                            <span class="badge badge-success badge-pill">Ongoing</span>
-                        </div>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.item')}}">Google Pixel 4a Black - 128GB - New</a>
-                        <div>
-                            <span class="badge badge-success">$400AU</span>
-                            <span class="badge badge-primary badge-pill">96</span>
-                            <span class="badge badge-danger badge-pill">Closed</span>
-                        </div>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.item')}}">Samsung Galaxy A11 - 16GB - 1 Year</a>
-                        <div>
-                            <span class="badge badge-success">$120AU</span>
-                            <span class="badge badge-primary badge-pill">67</span>
-                            <span class="badge badge-success badge-pill">Ongoing</span>
-                        </div>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.item')}}">Apple iPhone 8 Plus - 128GB - 1 Year</a>
-                        <div>
-                            <span class="badge badge-success">$400AU</span>
-                            <span class="badge badge-primary badge-pill">23</span>
-                            <span class="badge badge-success badge-pill">Ongoing</span>
-                        </div>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.item')}}">Oppo AX5s - 64GB - New</a>
-                        <div>
-                            <span class="badge badge-success">$300AU</span>
-                            <span class="badge badge-primary badge-pill">14</span>
-                            <span class="badge badge-success badge-pill">Ongoing</span>
-                        </div>
-                    </li>
+                    {% endfor %}
                 </ul>
         </div>
     </div>
