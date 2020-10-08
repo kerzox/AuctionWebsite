@@ -46,7 +46,7 @@ class CreateListingForm(FlaskForm):
 
 class CategoryForm(FlaskForm):
     category = SelectField('Category', [DataRequired()], 
-                            choices=[('Select Category', 'None'),
+                            choices=[('None', 'Select Category'),
                                     ('Apple', 'Apple'), 
                                     ('Google', 'Google'), 
                                     ('Samsung', 'Samsung'), 
