@@ -20,7 +20,12 @@
         <div class="row">
             <div class="col-md-3">
                 <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}" method="post">
-                    {{ wtf.quick_form(form) }}
+                    {{form.csrf_token()}}
+
+                    {{ wtf.form_field(form.category, class='form-control no-label', 
+                            placeholder='Category') }}
+                    
+                    {{ form.submit(class="btn btn-primary")}}
                 </form>
             </div>
         </div>
