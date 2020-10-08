@@ -48,4 +48,5 @@ def create():
 
 @listingbp.route('/listings')
 def listings():
-    return render_template('listing/listings.html')
+    items = Item.query.all()
+    return render_template('listing/listings.html', items = items)

@@ -6,8 +6,7 @@
     <div class="container h-100">
         <div class="row h-100 align-items-center">
             <div class="col-12 text-center">
-                <h1 class="font-weight-light">Create Your Own Listing</h1>
-                <button type="button" class="btn btn-secondary btn-lg"><a href="{{url_for('listing.create')}}" class="remove_link_colour">Create</a></button>
+                <h1 class="font-weight-light">{{session['email']}}'s Listings</h1>
             </div>
         </div>
     </div>
