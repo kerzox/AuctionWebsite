@@ -61,6 +61,9 @@ def search():
             cat = category_form.category.data
             items = Item.query.all()
             return render_template('index.html', items = items)
+        else:
+            items = Item.query.all()
+            return render_template('index.html', items = items)
     else:
         items = Item.query.all()
         return render_template('listing/listings.html', items = items)
