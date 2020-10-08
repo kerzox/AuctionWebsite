@@ -50,7 +50,8 @@ def create():
 def listings():
 
     items = Item.query.all()
-    return render_template('listing/listings.html', items = items)
+    category_form = CategoryForm()
+    return render_template('listing/listings.html', form = category_form, items = items)
 
 @listingbp.route('/search')
 def search():
