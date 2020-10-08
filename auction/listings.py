@@ -34,7 +34,7 @@ def create():
         print('Successfully created new listing', 'success')
         db.session.add(listing)
         db.session.commit()
-        return redirect('mylistings')
+        return redirect(url_for('listing.mylistings'))
     return render_template('listing/create.html', form=create_form)
 
 @listingbp.route('/listings')
