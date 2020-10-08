@@ -57,14 +57,13 @@ def listings():
 def search():
     category_form = CategoryForm()
     if category_form.validate_on_submit():
-        if category_form.category.data != 'None':
-            cat = category_form.category.data
-            items = Item.query.filter(Item.category == cat).all()
-            return render_template('listing/listings.html', form = category_form, items = items)
-        else:
+        cat = category_form.category.data
+        if cat == 'None':
             items = Item.query.all()
             return render_template('listing/listings.html', form = category_form, items = items)
-
+        else:
+            items = Item.query.filter(Item.category == cat).all()
+            return render_template('listing/listings.html', form = category_form, items = items)
     else:
         items = Item.query.all()
         return render_template('listing/listings.html', form = category_form, items = items)
