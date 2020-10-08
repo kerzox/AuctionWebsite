@@ -59,8 +59,12 @@ def search():
     if category_form.validate_on_submit():
         if category_form.category.data is not 'None':
             cat = category_form.category.data
-            items = Item.query.filter(Item.name == cat).all()
+            items = Item.query.filter(Item.category == cat).all()
             return render_template('listing/listings.html', form = category_form, items = items)
+        else:
+            items = Item.query.all()
+            return render_template('listing/listings.html', form = category_form, items = items)
+
     else:
         items = Item.query.all()
         return render_template('listing/listings.html', form = category_form, items = items)
