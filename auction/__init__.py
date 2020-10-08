@@ -40,9 +40,6 @@ def create_app():
     from . import listings
     app.register_blueprint(listings.listingbp)
 
-    from . import items
-    app.register_blueprint(items.bp)
-
     from .auth import authentication_blueprint
     app.register_blueprint(authentication_blueprint)
 
