@@ -58,7 +58,7 @@ def search():
     category_form = CategoryForm()
     if category_form.validate_on_submit():
         items = Item.query.all()
-        return render_template('listing/listings.html', items = items)
+        return render_template('listing/listings.html', form = category_form, items = items)
     else:
         items = Item.query.all()
-        return render_template('listing/listings.html', items = items)
+        return render_template('listing/listings.html', form = category_form, items = items)
