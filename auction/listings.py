@@ -59,7 +59,7 @@ def search():
     if category_form.validate_on_submit():
         if category_form.category.data is not "None":
             cat = category_form.category.data
-            items = Item.query.filter(Item.category.like(cat)).all()
+            items = Item.query.filter(Item.category.like("a")).all()
             return render_template('index.html', items = items)
     else:
         items = Item.query.all()
