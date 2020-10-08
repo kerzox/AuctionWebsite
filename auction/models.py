@@ -14,6 +14,7 @@ class User(db.Model, UserMixin):
     password_hash = db.Column(db.String(255), nullable=False)
     # Relationships
     bids = db.relationship('Bids', backref='users')
+    items = db.relationship('Item', backref='users')
 
 
 # Item database model
@@ -28,6 +29,8 @@ class Item(db.Model):
     start_currency = db.Column(db.DECIMAL, nullable=False)
     # Relationships
     bids = db.relationship('Bids', backref='items')
+    # Foreign Keys
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
     def __repr__(self):
         return "<Name: {}>".format(self.name)
