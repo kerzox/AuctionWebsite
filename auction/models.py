@@ -4,7 +4,7 @@ from flask_login import UserMixin
 
 
 # User database model
-class User(db.Model, UserMixin): 
+class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), index=True, unique=True, nullable=False)
@@ -36,8 +36,10 @@ class Item(db.Model):
         return "<Name: {}>".format(self.name)
 
 # Bid database model
+
+
 class Bids(db.Model):
-    __tablename__= 'bids'
+    __tablename__ = 'bids'
     id = db.Column(db.Integer, primary_key=True)
     bid_amount = db.Column(db.DECIMAL, nullable=False)
     bid_date = db.Column(db.DateTime, nullable=False)
