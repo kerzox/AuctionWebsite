@@ -1,13 +1,20 @@
 from flask import Blueprint, render_template, request, session, url_for, redirect
 from .forms import CreateListingForm
 from .models import Item
+from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename 
 from . import db
 import os
 
 listingbp = Blueprint('listing', __name__, url_prefix='/listings')
 
+@listingbp.route('/item/<id>')
+def item(id):
+    item = Item.query.filter_by(id=id).first()
+    return render_template('listing/item.html', item=item)
+
 @listingbp.route('/mylistings')
+@login_required
 def mylistings():
     return render_template('listing/mylistings.html')
 
@@ -22,6 +29,7 @@ def check_upload_file(form):
     return db_upload_path
 
 @listingbp.route('/create', methods = ['GET', 'POST'])
+@login_required
 def create():
     create_form = CreateListingForm()
     if create_form.validate_on_submit():
@@ -31,7 +39,8 @@ def create():
                        description=create_form.description.data,
                        image=db_file_path,
                        start_currency=create_form.start_bid.data)
-        print('Successfully created new listing', 'success')
+
+        print('Listing has been created', 'success')
         db.session.add(listing)
         db.session.commit()
         return redirect(url_for('listing.mylistings'))
@@ -40,7 +49,3 @@ def create():
 @listingbp.route('/listings')
 def listings():
     return render_template('listing/listings.html')
-
-@listingbp.route('/item')
-def item():
-    return render_template('listing/item.html')
