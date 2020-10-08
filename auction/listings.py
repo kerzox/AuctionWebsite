@@ -53,7 +53,7 @@ def listings():
     category_form = CategoryForm()
     return render_template('listing/listings.html', form = category_form, items = items)
 
-@listingbp.route('/search')
+@listingbp.route('/search', methods = ['GET', 'POST'])
 def search():
     category_form = CategoryForm()
     if category_form.validate_on_submit():
