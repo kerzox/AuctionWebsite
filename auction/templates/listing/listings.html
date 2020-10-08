@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-
+{% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
 <!--HEADER-->
 <header class="masthead overflow-hidden">
@@ -20,21 +20,7 @@
         <div class="row">
             <div class="col-md-3">
                 <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.search')}}">
-                    <div class="input-group mb-3">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text" id="basic-addon1">Categories</span>
-                        </div>
-                        <select class="form-control" id="exampleFormControlSelect1">
-                            <option>Select Category</option>
-                            <option>Apple</option>
-                            <option>iPhone</option>
-                            <option>Google</option>
-                            <option>Samsung</option>
-                            <option>Sony</option>
-                            <option>Oppo</option>
-                        </select>
-                    </div>
-                    <button type="submit" class="flex-shrink-1 btn btn-primary my-1">Submit</button>
+                    {{ wtf.quick_form(form) }}
                 </form>
             </div>
         </div>

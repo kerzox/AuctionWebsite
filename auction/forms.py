@@ -43,4 +43,13 @@ class CreateListingForm(FlaskForm):
                         FileAllowed(ALLOWED_FILE, message="ONLY supports png, jpg, PNG, JPG")])
       start_bid = DecimalField('Starting Bid', validators=[InputRequired('Starting Bid is required'), NumberRange(min=1, max=99999, message='Value must bebetween $1 and $99999')])
       submit = SubmitField("Create")
-                           
+
+class CategoryForm(FlaskForm):
+    category = SelectField('Category', [DataRequired()], 
+                            choices=[('Select Category', 'None'),
+                                    ('Apple', 'Apple'), 
+                                    ('Google', 'Google'), 
+                                    ('Samsung', 'Samsung'), 
+                                    ('Sony', 'Sony'), 
+                                    ('Oppo', 'Oppo')])
+    submit = SubmitField("Create")

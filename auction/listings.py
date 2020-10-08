@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, session, url_for, redirect
-from .forms import CreateListingForm
+from .forms import CreateListingForm, CategoryForm
 from .models import Item
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename 
@@ -54,10 +54,12 @@ def listings():
 
 @listingbp.route('/search')
 def search():
-    if request.args['search']:
-        cat = "%" + request.args['search'] + '%'
-        listings = Item.query.filter(Item.category == cat).all()
-        return render_template('listing/listings.html', items = listings)
+    category_form = CategoryForm()
+    if category_form.validate_on_submit():
+        if category_form.category.data is not "None":
+            cat = category_form.category.data
+            items = Item.query.filter(Item.category == cat).all()
+            return render_template('index.html', items = items)
     else:
         items = Item.query.all()
-        return redirect(url_for('listing.listings',  items = items))
+        return render_template('listing/listings.html', items = items)
