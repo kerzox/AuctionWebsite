@@ -2,38 +2,63 @@
 
 {% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
-  <div class="container">
+
+<header class="masthead overflow-hidden">
+  <div class="container h-100">
+      <div class="row h-100 align-items-center">
+          <div class="col-12 text-center">
+              <h1 class="font-weight-light">Create Your Own Listing</h1>
+              <button type="button" class="btn btn-secondary btn-lg"><a href="{{url_for('listing.create')}}" class="remove_link_colour">Create</a></button>
+          </div>
+      </div>
+  </div>
+</header>
+<div class="container-fluid p-5">
     <div class="row mt-5">
       <div class="col-md-3">
-
       </div>
       <div class="col-md">
+        <hr class="solid">
+        <h1>Hi {{session['email']}},</h1>
 
-        <h1>Create a Listing</h1>
-
+        <p>Please choose the make of your phone</p>
         <form action="" method="post" class="form" enctype="multipart/form-data" role="form">
           {{form.csrf_token()}}
+
+          {{ wtf.form_field(form.category, class='form-control', 
+          placeholder='Category') }}
+          <br>
+
+          <hr class="solid">
+          <h1>Provide some details</h1>
 
           {{ wtf.form_field(form.title, class='form-control', 
           placeholder='Title') }}
 
-          {{ wtf.form_field(form.category, class='form-control', 
-          placeholder='Category') }}
-
           {{ wtf.form_field(form.description, class='form-control', 
           placeholder='Description') }}
+          <br>
+
+          <hr class="solid">
+          <h1>Upload Photos</h1>
+          <p>Photos help sell your phone!</p>
 
           {{ wtf.form_field(form.image)}}
+          <br>
+
+          <hr class="solid">
+          <h1>Finally add a minimum bid amount</h1>
 
           {{ wtf.form_field(form.start_bid, class='form-control', 
           placeholder='Starting Bid') }}
           
+          <br>
+          <hr class="solid">
           {{ form.submit(class="btn btn-primary")}}
           </form>
 
       </div>
       <div class="col-md-3">
-
       </div>
     </div>
   </div>
