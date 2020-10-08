@@ -19,7 +19,7 @@
     <div class="col-md bg-dark pt-3 pl-3 pr-3 ml-1 mt-1 justify-content-center">
         <div class="row">
             <div class="col-md-3">
-                <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}" method="post">
+                <form class="form-inline d-flex flex-nowrap  no-label" action="{{url_for('listing.search')}}" method="post">
                     {{form.csrf_token()}}
 
                     {{ wtf.form_field(form.category, class='form-control no-label', 

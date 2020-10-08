@@ -20,6 +20,6 @@
     text-decoration: none;
 }
 
-.no-label label {
+.no-label .control-label {
     display: none;
 }
