@@ -56,18 +56,10 @@ def listings():
     return render_template('listing/listings.html', form=category_form, items=items)
 
 
-def get_my_list(current_user):
-    conn = sqlite3.connect('SQLALCHEMY_DATABASE_URI')
-    get = conn.execute(
-        'SELECT * FROM items WHERE user_id = ?', (current_user,)).fetchall()
-    conn.close()
-    return get
-
-
 @listingbp.route('/mylistings')
 @login_required
 def mylistings(current_user):
-    mylist = get_my_list(current_user)
+    mylist = Item.query.filter_by(user_id=current_user.id).all()
     category_form = CategoryForm()
     return render_template('listing/mylistings.html', form=category_form, items=mylist)
 
