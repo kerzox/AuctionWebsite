@@ -1,5 +1,8 @@
 {% extends 'base.html' %}
 
+
+{% import "bootstrap/wtf.html" as wtf %}
+
 {% block content %}
 <!--HEADER-->
 <header class="masthead overflow-hidden">
@@ -33,17 +36,40 @@
                 <h2>Starting Bid</h2>
                 <h2><span class="badge badge-danger">{{item.start_currency}}</span></h2>
                 <h2>Current Bid</h2>
-                <h2><span class="badge badge-success">{{item.bids}}</span></h2>
+                <h2><span class="badge badge-success">{{bid}}</span></h2>
                 <h2>Number of Bids</h2>
                 <h2><span class="badge badge-primary">{{item.bids|length}}</span></h2>
             </div>
             <div class="col-lg text-center my-auto py-2">
+                <div class="col-lg text-center my-auto py-2">
                 <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
-                    data-target="#BidModal">Place Bid
-                </button>
+                        data-target="#AllBids">View Bids
+                 </button>
+                </div>
                 <button type="button" class="btn btn-secondary btn-lg btn-block"><a class="remove_link_colour"
                         href="{{url_for('main.watchlist')}}">Add to Watchlist</a>
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="AllBids" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">All Bids</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <form action="" method="post" class="form" enctype="multipart/form-data" role="form"></form>
+                    {{bid_form.csrf_token()}}
+                    <div class="modal-body">
+                        {{wtf.quick_form(bid_form, "/listings/{0}/bid".format(item.id))}}
+                    </div>
+                    <div class="modal-footer">
+                </form>
             </div>
         </div>
     </div>

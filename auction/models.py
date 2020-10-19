@@ -28,6 +28,7 @@ class Item(db.Model):
     status = db.Column(db.Boolean, default=True, nullable=False)
     start_currency = db.Column(db.DECIMAL, nullable=False)
 
+
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     bids = db.relationship('Bids', backref='items')
 
@@ -42,7 +43,7 @@ class Bids(db.Model):
     __tablename__ = 'bids'
     id = db.Column(db.Integer, primary_key=True)
     bid_amount = db.Column(db.DECIMAL, nullable=False)
-    bid_date = db.Column(db.DateTime, nullable=False)
+    bid_date = db.Column(db.DateTime, default=datetime.now())
 
     item_id = db.Column(db.Integer, db.ForeignKey('items.id'))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

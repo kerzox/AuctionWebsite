@@ -1,6 +1,7 @@
 from flask import Blueprint, render_template, request, session, url_for, redirect
-from .forms import CreateListingForm, CategoryForm
-from .models import Item
+from .forms import CreateListingForm, CategoryForm, AddBidForm
+from .models import Item, Bids, User
+from sqlalchemy import func
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 from . import db
@@ -9,11 +10,13 @@ import sqlite3
 
 listingbp = Blueprint('listing', __name__, url_prefix='/listings')
 
-
 @listingbp.route('/item/<id>')
 def item(id):
     item = Item.query.filter_by(id=id).first()
-    return render_template('listing/item.html', item=item)
+    bid = db.session.query(db.func.max(Bids.bid_amount)).filter(Bids.items.has(id=id)).scalar()
+
+    bid_form = AddBidForm()
+    return render_template('listing/item.html', item=item, bid=bid, bid_form=bid_form)
 
 
 def check_upload_file(form):
@@ -50,24 +53,40 @@ def create():
 
 @listingbp.route('/listings')
 def listings():
-
     items = Item.query.all()
     category_form = CategoryForm()
-    return render_template('listing/listings.html', form=category_form, items=items)
+    bid_form = AddBidForm()
+    return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
 
 
-def get_my_list(user_id):
-    conn = sqlite3.connect('SQLALCHEMY_DATABASE_URI')
-    get = conn.execute(
-        'SELECT * FROM items WHERE user_id = ?', (user_id,)).fetchall()
-    conn.close()
-    return get
+@listingbp.route('/<id>/bid', methods=['POST'])
+def bid(id):
+    bid_form = AddBidForm()
+    grab_item = Item.query.filter_by(id=id).first()
+    grab_user = current_user
+    if bid_form.validate_on_submit():
 
+        new_bid = bid_form.bid_amount.data
+        curr_bid = db.session.query(db.func.max(Bids.bid_amount)).filter(Bids.items.has(id=id)).scalar()
+
+        if (curr_bid == None):
+            curr_bid = Item.query.filter_by().first()
+        if (new_bid > curr_bid):
+            bid_commit = Bids(bid_amount=bid_form.bid_amount.data,
+                              users=grab_user,
+                              items=grab_item)
+            db.session.add(bid_commit)
+            db.session.commit()
+            print("Successfully added a new bid")
+        else:
+            print("Failed to set bid price as new bid is lower than current.")
+            return redirect(url_for('listing.item', id=id))
+    return redirect(url_for('listing.item', id=id))
 
 @listingbp.route('/mylistings')
 @login_required
-def mylistings(user_id):
-    mylist = get_my_list(user_id)
+def mylistings():
+    mylist = Item.query.filter_by(user_id=current_user.id).all()
     category_form = CategoryForm()
     return render_template('listing/mylistings.html', form=category_form, mylist=mylist)
 

@@ -2,11 +2,11 @@ from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, DecimalField, SelectField
 from wtforms.validators import InputRequired, Length, EqualTo, Email, NumberRange
 from flask_wtf.file import FileRequired, FileField, FileAllowed, DataRequired
+from . import db
 
 ALLOWED_FILE = {'png', 'jpg', 'JPG', 'PNG'}  
 
 class LoginForm(FlaskForm):
-
     user_name=StringField("Username", validators=[InputRequired('Enter user name')])
     password=PasswordField("Password", validators=[InputRequired('Enter user password')])
     submit = SubmitField('Login')
@@ -22,6 +22,10 @@ class RegisterForm(FlaskForm):
     confirm = PasswordField("Confirm Password", validators=[EqualTo('password', message="Passwords should match")])
     #submit button
     submit = SubmitField("Register")
+
+class AddBidForm(FlaskForm):
+    bid_amount = DecimalField('Bid amount', validators=[InputRequired('Bid is required'), NumberRange(min=1, max=99999, message='Value must bebetween $1 and $99999')])
+    submit = SubmitField("Add")
 
 class CreateListingForm(FlaskForm):
       title = StringField('Title', validators=[InputRequired('Title is required')])
@@ -52,4 +56,4 @@ class CategoryForm(FlaskForm):
                                     ('Samsung', 'Samsung'), 
                                     ('Sony', 'Sony'), 
                                     ('Oppo', 'Oppo')])
-    submit = SubmitField("Create")
+    submit = SubmitField("Filter")
