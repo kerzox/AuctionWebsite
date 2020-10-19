@@ -58,7 +58,7 @@ def listings():
 
 @listingbp.route('/mylistings')
 @login_required
-def mylistings(current_user):
+def mylistings():
     mylist = Item.query.filter_by(user_id=current_user.id).all()
     category_form = CategoryForm()
     return render_template('listing/mylistings.html', form=category_form, items=mylist)
