@@ -105,8 +105,9 @@ def search():
             return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
     else:
         cat = request.form.get("search")
-        if cat == 'Apple':
+        if cat == 'All':
+            items = Item.query.all()
+            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
+        else:
             items = Item.query.filter(Item.category == cat).all()
             return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
-        items = Item.query.all()
-        return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)

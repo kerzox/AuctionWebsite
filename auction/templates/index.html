@@ -25,28 +25,38 @@
                 <ul class="list-group">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}" method="post">
-                            <input class="webkit" type="submit" name="search" value="Apple">
+                            <input class="btn btn-primary" type="submit" name="search" value="Apple">
                         </form>
                         <span class="badge badge-primary badge-pill">14232</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.listings')}}">iPhone</a>
+                        <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}" method="post">
+                            <input class="btn btn-primary" type="submit" name="search" value="Google">
+                        </form>
                         <span class="badge badge-primary badge-pill">12354</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Google</a>
+                        <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}" method="post">
+                            <input class="btn btn-primary" type="submit" name="search" value="Samsung">
+                        </form>
                         <span class="badge badge-primary badge-pill">12133</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Samsung</a>
+                        <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}" method="post">
+                            <input class="btn btn-primary" type="submit" name="search" value="Sony">
+                        </form>
                         <span class="badge badge-primary badge-pill">4682</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Sony</a>
+                        <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}" method="post">
+                            <input class="btn btn-primary" type="submit" name="search" value="Oppo">
+                        </form>
                         <span class="badge badge-primary badge-pill">3932</span>
                     </li>
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Oppo</a>
+                        <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}" method="post">
+                            <input class="btn btn-primary" type="submit" name="search" value="All">
+                        </form>
                         <span class="badge badge-primary badge-pill">1932</span>
                     </li>
                 </ul>
