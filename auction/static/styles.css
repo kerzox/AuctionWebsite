@@ -20,7 +20,7 @@
     text-decoration: none;
 }
 
-.remove_button {
+button {
     border:none;
     background-color:transparent;
     outline:none;
