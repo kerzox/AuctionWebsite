@@ -11,7 +11,7 @@ mainbp = Blueprint('main', __name__)
 def index():
     print(request.values.get('email'))
     print(request.values.get('pwd'))
-    items = Item.query.limit(6).all()
+    items = Item.query.limit(6).all().order_by(Item.id.desc())
     return render_template('index.html', items=items)
 
 
