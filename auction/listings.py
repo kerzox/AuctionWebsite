@@ -14,7 +14,6 @@ listingbp = Blueprint('listing', __name__, url_prefix='/listings')
 def item(id):
     item = Item.query.filter_by(id=id).first()
     bid = db.session.query(db.func.max(Bids.bid_amount)).filter(Bids.items.has(id=id)).scalar()
-
     bid_form = AddBidForm()
     return render_template('listing/item.html', item=item, bid=bid, bid_form=bid_form)
 
