@@ -24,7 +24,7 @@ class RegisterForm(FlaskForm):
     submit = SubmitField("Register")
 
 class AddBidForm(FlaskForm):
-    bid_amount = DecimalField('Bid amount', validators=[InputRequired('Bid is required'), NumberRange(min=1, max=99999, message='Value must bebetween $1 and $99999')])
+    bid_amount = DecimalField('Bid amount', validators=[InputRequired('Bid is required'), NumberRange(min=1, max=99999999, message='Value must bebetween $1 and $99999999')])
     submit = SubmitField("Add")
 
 class CreateListingForm(FlaskForm):
@@ -45,7 +45,7 @@ class CreateListingForm(FlaskForm):
       image = FileField('Upload Image', 
                         validators=[FileRequired(message="Image can not be empty"),
                         FileAllowed(ALLOWED_FILE, message="ONLY supports png, jpg, PNG, JPG")])
-      start_bid = DecimalField('Starting Bid', validators=[InputRequired('Starting Bid is required'), NumberRange(min=1, max=10000000000000, message='Value must be above $1')])
+      start_bid = DecimalField('Starting Bid', validators=[InputRequired('Starting Bid is required'), NumberRange(min=1, max=99999999, message='Value must be above $1 and $99999999')])
       submit = SubmitField("Create")
 
 class CategoryForm(FlaskForm):
