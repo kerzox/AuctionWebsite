@@ -70,7 +70,7 @@ def bid(id):
         curr_bid = db.session.query(db.func.max(Bids.bid_amount)).filter(Bids.items.has(id=id)).scalar()
 
         if (curr_bid == None):
-            curr_bid = Item.query.filter_by().first()
+            curr_bid = db.session.query(Item.start_currency).filter_by(id=id).scalar()
         if (new_bid > curr_bid):
             bid_commit = Bids(bid_amount=bid_form.bid_amount.data,
                               users=grab_user,
