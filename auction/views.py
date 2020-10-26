@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, session, url_for, redirect
 from .forms import CreateListingForm
-from .models import Item
+from .models import Item, Bids
+from sqlalchemy import func
+from . import db
 
 mainbp = Blueprint('main', __name__)
 
@@ -9,6 +11,7 @@ mainbp = Blueprint('main', __name__)
 def index():
     print(request.values.get('email'))
     print(request.values.get('pwd'))
+    db.session.query(Item, func.count(Item.bids.id).label('numBids')).join(Item.bids).group_by(Item).order_by('total DESC')
     items = Item.query.limit(6).all()
     return render_template('index.html', items=items)
 
