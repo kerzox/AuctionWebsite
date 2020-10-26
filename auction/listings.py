@@ -41,7 +41,7 @@ def create():
                        category=create_form.category.data,
                        description=create_form.description.data,
                        image=db_file_path,
-                       start_currency=create_form.start_bid.data,
+                       start_currency=float(create_form.start_bid.data),
                        users=current_user)
 
         print('Listing has been created', 'success')
