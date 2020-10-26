@@ -20,6 +20,9 @@
     text-decoration: none;
 }
 
-.remove_padding {
-    padding: 0 !important;
+.btn-link.btn-anchor {
+    outline: none !important;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
 }
