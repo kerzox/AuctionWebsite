@@ -18,7 +18,7 @@ def index():
     samsung = Item.query.filter(Item.category == "Samsung").count()
     sony = Item.query.filter(Item.category == "Sony").count()
     oppo = Item.query.filter(Item.category == "Oppo").count()
-    allItems = Item.query.all().count()
+    allItems = Item.query.all()
 
     return render_template('index.html', items=items, apple = apple, 
                             google = google, samsung = samsung, sony = sony,

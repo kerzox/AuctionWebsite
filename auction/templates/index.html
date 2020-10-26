@@ -57,7 +57,7 @@
                         <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}" method="post">
                             <button class="btn btn-link btn-anchor remove_link_colour" style="padding:0px; border:0px solid transparent;" type="submit" name="search" value="Apple">All</button>
                         </form>
-                        <span class="badge badge-primary badge-pill">{{allItems}}</span>
+                        <span class="badge badge-primary badge-pill">{{allItems|length}}</span>
                     </li>
                 </ul>
         </div>
