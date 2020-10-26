@@ -12,7 +12,10 @@ def index():
     print(request.values.get('email'))
     print(request.values.get('pwd'))
     items = Item.query.order_by(Item.id.desc()).limit(6).all()
-    return render_template('index.html', items=items)
+
+    apple = Item.query.filter(Item.category == "Apple").count()
+
+    return render_template('index.html', items=items, apple = apple)
 
 
 @mainbp.route('/watchlist')
