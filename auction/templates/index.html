@@ -8,7 +8,9 @@
                 <div class="col-12 text-center">
                     <h1 class="font-weight-light">Phone Auctions</h1>
                     <p class="lead">The best site for unique phone auctions.</p>
-
+                    <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}" method="post">
+                        <input type="submit" name="search" value="Apple">
+                    </form>
                 </div>
             </div>
         </div>
