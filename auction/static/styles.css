@@ -20,6 +20,6 @@
     text-decoration: none;
 }
 
-.webkit {
-    -webkit-appearance: none;
+input.webkit {
+    -webkit-appearance: none !important;
 }
