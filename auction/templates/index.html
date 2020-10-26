@@ -70,7 +70,11 @@
                         <div>
                             <span class="badge badge-success">${{item.start_currency}}AU</span>
                             <span class="badge badge-primary badge-pill">{{item.bids|length}}</span>
+                            {% if item.status == true %}
                             <span class="badge badge-success badge-pill">Ongoing</span>
+                            {% else %}
+                            <span class="badge badge-danger badge-pill">Closed</span>
+                            {% endif %}
                         </div>
                     </li>
                     {% endfor %}
