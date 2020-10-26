@@ -9,7 +9,7 @@ mainbp = Blueprint('main', __name__)
 def index():
     print(request.values.get('email'))
     print(request.values.get('pwd'))
-    items = Item.query.all()
+    items = Item.query.limit(6).all()
     return render_template('index.html', items=items)
 
 
