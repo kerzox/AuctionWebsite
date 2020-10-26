@@ -12,7 +12,8 @@ def index():
     print(request.values.get('email'))
     print(request.values.get('pwd'))
     items = Item.query.order_by(Item.id.desc()).limit(6).all()
-    return render_template('index.html', items=items)
+    bid = db.session.query(db.func.max(Bids.bid_amount)).filter(Bids.items.has(id=id)).scalar()
+    return render_template('index.html', items=items, bid=bid)
 
 
 @mainbp.route('/search')
