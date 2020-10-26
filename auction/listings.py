@@ -103,13 +103,5 @@ def search():
             items = Item.query.filter(Item.category == cat).all()
             return render_template('listing/listings.html', form=category_form, items=items)
     else:
-        cat = request.form.get("search")
-        if cat == 'None':
-            items = Item.query.all()
-            return render_template('listing/listings.html', form=category_form, items=items)
-        else:
-            items = Item.query.filter(Item.category == cat).all()
-            return render_template('listing/listings.html', form=category_form, items=items)
-
         items = Item.query.all()
         return render_template('listing/listings.html', form=category_form, items=items)
