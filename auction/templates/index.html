@@ -1,69 +1,71 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <!--HEADER-->
-    <header class="masthead overflow-hidden">
-        <div class="container h-100">
-            <div class="row h-100 align-items-center">
-                <div class="col-12 text-center">
-                    <h1 class="font-weight-light">Phone Auctions</h1>
-                    <p class="lead">The best site for unique phone auctions.</p>
-                </div>
+<!--HEADER-->
+<header class="masthead overflow-hidden">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12 text-center">
+                <h1 class="font-weight-light">Phone Auctions</h1>
+                <p class="lead">The best site for unique phone auctions.</p>
             </div>
         </div>
-    </header>
-    <!--/HEADER-->
+    </div>
+</header>
+<!--/HEADER-->
 
 
 
-    <!--ROW 2-->
-    <div class="row no-gutters m-2 ml-2 mb-2">
-        <div class="col-md bg-dark pt-3 pl-3 pb-3 pr-3 mr-1 ml-1 mt-1 bg-image panel-height-4">
-        </div>
-        <div class="col-md bg-dark pt-3 pl-3 pb-3 pr-3 mr-1 ml-1 mt-1 panel-height-4">
-            <h3 class="text-white mb-3">Categories</h1>
-                <ul class="list-group">
+<!--ROW 2-->
+<div class="row no-gutters m-2 ml-2 mb-2">
+    <div class="col-md bg-dark pt-3 pl-3 pb-3 pr-3 mr-1 ml-1 mt-1 bg-image panel-height-4">
+    </div>
+    <div class="col-md bg-dark pt-3 pl-3 pb-3 pr-3 mr-1 ml-1 mt-1 panel-height-4">
+        <h3 class="text-white mb-3">Categories</h1>
+            <ul class="list-group">
+                <form action="{{url_for('listing.search')}}" method="post">
                     <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Apple</a>
+                        <input class="remove_link_colour" id="submit" name="submit" type="submit" value="Apple">Apple</a>
                         <span class="badge badge-primary badge-pill">14232</span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.listings')}}">iPhone</a>
-                        <span class="badge badge-primary badge-pill">12354</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Google</a>
-                        <span class="badge badge-primary badge-pill">12133</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Samsung</a>
-                        <span class="badge badge-primary badge-pill">4682</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Sony</a>
-                        <span class="badge badge-primary badge-pill">3932</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Oppo</a>
-                        <span class="badge badge-primary badge-pill">1932</span>
-                    </li>
-                </ul>
-        </div>
-        <div class="col-md bg-dark pt-3 pl-3 pb-3 pr-3 ml-1 mr-1 mt-1 panel-height-4">
-            <h3 class="text-white mb-3">Recent Listings</h1>
-                <ul class="list-group">
-                    {% for item in items %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <a class="remove_link_colour" href="{{url_for('listing.item', id=item.id)}}">{{item.name}}</a>
-                        <div>
-                            <span class="badge badge-success">${{item.start_currency}}AU</span>
-                            <span class="badge badge-primary badge-pill">{{item.bids|length}}</span>
-                            <span class="badge badge-success badge-pill">Ongoing</span>
-                        </div>
-                    </li>
-                    {% endfor %}
-                </ul>
-        </div>
+                </form>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a class="remove_link_colour" href="{{url_for('listing.listings')}}">iPhone</a>
+                    <span class="badge badge-primary badge-pill">12354</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Google</a>
+                    <span class="badge badge-primary badge-pill">12133</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Samsung</a>
+                    <span class="badge badge-primary badge-pill">4682</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Sony</a>
+                    <span class="badge badge-primary badge-pill">3932</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a class="remove_link_colour" href="{{url_for('listing.listings')}}">Oppo</a>
+                    <span class="badge badge-primary badge-pill">1932</span>
+                </li>
+            </ul>
     </div>
-    <!--/ROW 2-->
+    <div class="col-md bg-dark pt-3 pl-3 pb-3 pr-3 ml-1 mr-1 mt-1 panel-height-4">
+        <h3 class="text-white mb-3">Recent Listings</h1>
+            <ul class="list-group">
+                {% for item in items %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    <a class="remove_link_colour" href="{{url_for('listing.item', id=item.id)}}">{{item.name}}</a>
+                    <div>
+                        <span class="badge badge-success">${{item.start_currency}}AU</span>
+                        <span class="badge badge-primary badge-pill">{{item.bids|length}}</span>
+                        <span class="badge badge-success badge-pill">Ongoing</span>
+                    </div>
+                </li>
+                {% endfor %}
+            </ul>
+    </div>
+</div>
+<!--/ROW 2-->
 {% endblock %}
