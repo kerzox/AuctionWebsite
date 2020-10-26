@@ -20,7 +20,6 @@
     text-decoration: none;
 }
 
-.remove_webkit {
+.webkit {
     -webkit-appearance: none;
-    color: red;
 }
