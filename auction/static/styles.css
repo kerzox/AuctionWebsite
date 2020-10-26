@@ -20,8 +20,8 @@
     text-decoration: none;
 }
 
-button {
-    border:none;
-    background-color:transparent;
-    outline:none;
- }
+
+
+.btnoff {
+    all: unset;
+}
