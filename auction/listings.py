@@ -94,14 +94,15 @@ def mylistings():
 @listingbp.route('/search', methods=['GET', 'POST'])
 def search():
     category_form = CategoryForm()
+    bid_form = AddBidForm()
     if category_form.validate_on_submit():
         cat = category_form.category.data
         if cat == 'None':
             items = Item.query.all()
-            return render_template('listing/listings.html', form=category_form, items=items)
+            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
         else:
             items = Item.query.filter(Item.category == cat).all()
-            return render_template('listing/listings.html', form=category_form, items=items)
+            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
     else:
         items = Item.query.all()
-        return render_template('listing/listings.html', form=category_form, items=items)
+        return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
