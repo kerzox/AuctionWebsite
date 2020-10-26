@@ -56,7 +56,8 @@
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         <a class="remove_link_colour" href="{{url_for('listing.item', id=item.id)}}">{{item.name}}</a>
                         <div>
-                            <span class="badge badge-success">${{item.bids}}AU</span>
+                            {{ % set bid = loop.index %}}
+                            <span class="badge badge-success">${{bid.bid_amount}}AU</span>
                             <span class="badge badge-primary badge-pill">{{item.bids|length}}</span>
                             <span class="badge badge-success badge-pill">Ongoing</span>
                         </div>
