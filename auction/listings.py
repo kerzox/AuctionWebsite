@@ -14,6 +14,7 @@ listingbp = Blueprint('listing', __name__, url_prefix='/listings')
 def item(id):
     item = Item.query.filter_by(id=id).first()
     bid = db.session.query(db.func.max(Bids.bid_amount)).filter(Bids.items.has(id=id)).scalar()
+
     bid_form = AddBidForm()
     return render_template('listing/item.html', item=item, bid=bid, bid_form=bid_form)
 
@@ -69,7 +70,7 @@ def bid(id):
         curr_bid = db.session.query(db.func.max(Bids.bid_amount)).filter(Bids.items.has(id=id)).scalar()
 
         if (curr_bid == None):
-            curr_bid = db.session.query(Item.start_currency).filter_by(id=id).scalar()
+            curr_bid = Item.query.filter_by().first()
         if (new_bid > curr_bid):
             bid_commit = Bids(bid_amount=bid_form.bid_amount.data,
                               users=grab_user,
@@ -93,15 +94,22 @@ def mylistings():
 @listingbp.route('/search', methods=['GET', 'POST'])
 def search():
     category_form = CategoryForm()
-    bid_form = AddBidForm()
     if category_form.validate_on_submit():
         cat = category_form.category.data
         if cat == 'None':
             items = Item.query.all()
-            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
+            return render_template('listing/listings.html', form=category_form, items=items)
         else:
             items = Item.query.filter(Item.category == cat).all()
-            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
+            return render_template('listing/listings.html', form=category_form, items=items)
     else:
+        cat = request.form.get("search")
+        if cat == 'None':
+            items = Item.query.all()
+            return render_template('listing/listings.html', form=category_form, items=items)
+        else:
+            items = Item.query.filter(Item.category == cat).all()
+            return render_template('listing/listings.html', form=category_form, items=items)
+
         items = Item.query.all()
-        return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
+        return render_template('listing/listings.html', form=category_form, items=items)
