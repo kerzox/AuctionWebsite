@@ -22,4 +22,5 @@
 
 .remove_webkit {
     -webkit-appearance: none;
+    color: red;
 }
