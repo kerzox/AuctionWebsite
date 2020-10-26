@@ -12,7 +12,7 @@ def create_app():
     app.secret_key = 'Secret'
     
     # Heroku postgresql
-     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+    app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
     # local Heroku
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///travel.sqlite'
