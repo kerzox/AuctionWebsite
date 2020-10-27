@@ -12,7 +12,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class RegisterForm(FlaskForm):
-    user_name=StringField("Username", validators=[InputRequired('Username is required')])
+    user_name=StringField("Username", validators=[InputRequired('Username is required'), Length(min=4, max=20, message='Username must be between 4 and 20 characters!')])
     email_id = StringField("Email Address", validators=[InputRequired('Email is required'), Email("Please enter a valid email")])
     contact_no = StringField("Contact Number", validators=[InputRequired('Contact Number is required')])
     address = StringField("Address", validators=[InputRequired('Address is required')])
@@ -28,7 +28,7 @@ class AddBidForm(FlaskForm):
     submit = SubmitField("Add")
 
 class CreateListingForm(FlaskForm):
-      title = StringField('Title', validators=[InputRequired('Title is required')])
+      title = StringField('Title', validators=[InputRequired('Title is required'), Length(min=5, max=35, message='Title must be between 5 and 35 characters!')])
 
       category = SelectField('Category', [DataRequired()], 
                             choices=[('Apple', 'Apple'), 
