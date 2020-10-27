@@ -32,9 +32,9 @@
                 <h2>Starting Bid</h2>
                 <h2><span class="badge badge-danger">${{item.start_currency}}AU</span></h2>
                 <h2>Current Bid</h2>
-                <h2><span class="badge badge-success">$800AU</span></h2>
+                <h2><span class="badge badge-success">${{item.curr_currency}}</span></h2>
                 <h2>Number of Bids</h2>
-                <h2><span class="badge badge-primary">131</span></h2>
+                <h2><span class="badge badge-primary">{{item.bids|length}}</span></h2>
             </div>
             <div class="col-lg text-center my-auto py-2">
                 <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"

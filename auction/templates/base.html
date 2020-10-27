@@ -40,9 +40,11 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('listing.listings')}}">Listings</a>
                 </li>
+                {% if session['email'] %}
                 <li class="nav-item">
                     <a class="nav-link" href="{{url_for('main.watchlist')}}">Watchlist</a>
                 </li>
+                {% endif %}
             </ul>
             <ul class="navbar-nav mr-3">
                 {% if session['email'] %}

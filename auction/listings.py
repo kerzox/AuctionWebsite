@@ -42,6 +42,7 @@ def create():
                        description=create_form.description.data,
                        image=db_file_path,
                        start_currency=round(float(create_form.start_bid.data), 2),
+                       curr_currency=round(float(create_form.start_bid.data), 2),
                        users=current_user)
 
         print('Listing has been created', 'success')
@@ -68,7 +69,7 @@ def bid(id):
 
         new_bid = bid_form.bid_amount.data
         curr_bid = db.session.query(db.func.max(Bids.bid_amount)).filter(Bids.items.has(id=id)).scalar()
-
+        print(new_bid, curr_bid)
         if (curr_bid == None):
             curr_bid = db.session.query(Item.start_currency).filter_by(id=id).scalar()
         if (new_bid > curr_bid):
@@ -76,6 +77,9 @@ def bid(id):
                               users=grab_user,
                               items=grab_item)
             db.session.add(bid_commit)
+            update_currency = Item.query.get(id)
+            update_currency.curr_currency = bid_form.bid_amount.data
+
             db.session.commit()
             print("Successfully added a new bid")
         else:

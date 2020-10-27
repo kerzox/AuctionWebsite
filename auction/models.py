@@ -13,8 +13,16 @@ class User(db.Model, UserMixin):
     address = db.Column(db.String(200), index=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
 
+    watchlist = db.relationship('Watchlist', backref='users')
     bids = db.relationship('Bids', backref='users')
     items = db.relationship('Item', backref='users')
+
+
+class Watchlist(db.Model):
+    __tablename__ = 'watchlist'
+    id = db.Column(db.Integer, primary_key=True)
+    item_id = db.Column(db.Integer, db.ForeignKey('items.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
 
 
 # Item database model
@@ -27,10 +35,11 @@ class Item(db.Model):
     category = db.Column(db.String(50), nullable=False)
     status = db.Column(db.Boolean, default=True, nullable=False)
     start_currency = db.Column(db.Float(precision=2), nullable=False)
-
+    curr_currency = db.Column(db.Float(precision=2), nullable=False)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     bids = db.relationship('Bids', backref='items')
+    watchlist = db.relationship('Watchlist', backref='items')
 
 
     def __repr__(self):

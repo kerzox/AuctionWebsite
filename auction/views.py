@@ -1,6 +1,7 @@
+import flask
 from flask import Blueprint, render_template, request, session, url_for, redirect
-from .forms import CreateListingForm
-from .models import Item, Bids
+from flask_login import login_required, current_user
+from .models import Item, Bids, Watchlist
 from sqlalchemy import func
 from . import db
 
@@ -25,6 +26,24 @@ def index():
                             oppo = oppo, allItems = allItems)
 
 
-@mainbp.route('/watchlist')
+@mainbp.route('/watchlist', methods=['GET', 'POST'])
+@login_required
 def watchlist():
-    return render_template('watchlist.html')
+    grab_user = current_user
+
+    if flask.request.method == 'POST':
+        stuff_id = request.form.get("watchlist")
+        submit_item = Item.query.filter_by(id=stuff_id).first()
+        add_to_watchlist = Watchlist(items=submit_item,
+                                     users=grab_user)
+        db.session.add(add_to_watchlist)
+        db.session.commit()
+        print("added listing to watchlist")
+        return redirect(url_for('main.watchlist'))
+    else:
+        watchlist_items = []
+        for item in db.session.query(Watchlist.item_id).filter_by(user_id=current_user.id).all():
+            watchlist_items.append(item.item_id)
+        item_filter = db.session.query(Item).filter(Item.id.in_(watchlist_items)).all()
+
+        return render_template('watchlist.html', items=item_filter)

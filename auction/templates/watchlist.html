@@ -14,4 +14,33 @@
     </header>
     <!--/HEADER-->
 
+    <div class="row no-gutters m-2 ml-2 mb-2">
+        <div class="col-md bg-dark pt-3 pl-3 pb-3 pr-3 mr-1 ml-1 mt-1 justify-content-center">
+            {% for item in items %}
+            <div class="row bg-white pt-2 ml-1 mr-1 border">
+                <div class="col col-lg-2 mb-3">
+                    <img src="{{item.image}}"
+                        class="mx-auto img-fluid min-vh-0">
+                </div>
+                <div class="col-lg-5 mx-auto">
+                    <div class="row mx-1 mb-2">
+                        <h1><a href="{{url_for('listing.item', id=item.id)}}" class="remove_link_colour">{{item.name}}</a></h1>
+                    </div>
+                    <div class="row mx-1">
+                       {{item.description}}
+                    </div>
+                </div>
+                <div class="col-md">
+                    <h2>Starting Bid</h2>
+                    <h2><span class="badge badge-danger">${{item.start_currency}}AU</span></h2>
+                    <h2>Current Bid</h2>
+                    <h2><span class="badge badge-success">${{item.curr_currency}}</span></h2>
+                    <h2>Number of Bids</h2>
+                    <h2><span class="badge badge-primary">{{item.bids|length}}</span></h2>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
    {% endblock %}
