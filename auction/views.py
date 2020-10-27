@@ -32,8 +32,16 @@ def watchlist():
     grab_user = current_user
 
     if flask.request.method == 'POST':
-        stuff_id = request.form.get("watchlist")
-        submit_item = Item.query.filter_by(id=stuff_id).first()
+        remove_id = request.form.get("remove")
+        add_id = request.form.get("watchlist")
+        if remove_id is not None:
+            if 'remove' in remove_id:
+                x = remove_id.split()
+                db.session.query(Watchlist.user_id).filter_by(item_id=x[0]).delete()
+                db.session.commit()
+                return redirect(url_for('main.watchlist'))
+
+        submit_item = Item.query.filter_by(id=add_id).first()
         add_to_watchlist = Watchlist(items=submit_item,
                                      users=grab_user)
         db.session.add(add_to_watchlist)
