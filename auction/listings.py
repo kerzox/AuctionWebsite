@@ -61,6 +61,7 @@ def listings():
 
 
 @listingbp.route('/<id>/bid', methods=['POST'])
+@login_required
 def bid(id):
     bid_form = AddBidForm()
     grab_item = Item.query.filter_by(id=id).first()
