@@ -37,9 +37,9 @@ def watchlist():
         if remove_id is not None:
             if 'remove' in remove_id:
                 x = remove_id.split()
-                db.session.query(Watchlist.user_id).filter_by(item_id=x[0]).delete()
+                Watchlist.query.filter(Watchlist.user_id==current_user.id, Watchlist.item_id==x[0]).delete()
                 db.session.commit()
-                return redirect(url_for('main.watchlist'))
+            return redirect(url_for('main.watchlist'))
 
         submit_item = Item.query.filter_by(id=add_id).first()
         add_to_watchlist = Watchlist(items=submit_item,
