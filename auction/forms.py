@@ -28,7 +28,7 @@ class AddBidForm(FlaskForm):
     submit = SubmitField("Add")
 
 class CreateListingForm(FlaskForm):
-      title = StringField('Title', validators=[InputRequired('Title is required'), Length(min=5, max=35, message='Title must be between 5 and 35 characters!')])
+      title = StringField('Title', validators=[InputRequired('Title is required'), Length(min=5, max=45, message='Title must be between 5 and 45 characters!')])
 
       category = SelectField('Category', [DataRequired()], 
                             choices=[('Apple', 'Apple'), 

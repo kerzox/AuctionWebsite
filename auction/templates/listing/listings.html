@@ -72,7 +72,17 @@
                 <h2><span class="badge badge-primary">{{item.bids|length}}</span></h2>
             </div>
             <div class="col-lg text-center my-auto py-2">
-                {{wtf.quick_form(bid_form, "/listings/{0}/bid".format(item.id))}}
+                <div class="col-lg text-center my-auto py-2">
+                    <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                        data-target="#AllBids">Add bid
+                    </button>
+                </div>
+                <div class="col-lg text-center my-auto py-2">
+                    <form class="form-inline d-flex flex-nowrap" action="{{url_for('main.watchlist')}}" method="post">
+                        <button class="btn btn-primary btn-lg btn-block" type="submit" name="watchlist"
+                            value="{{item.id}}">Add to watchlist</button>
+                    </form>
+                </div>
             </div>
         </div>
         {% endfor %}
@@ -89,10 +99,12 @@
                 </button>
             </div>
             <form action="" method="post" class="form" enctype="multipart/form-data" role="form"></form>
-           <div class="modal-body">
+            {{bid_form.csrf_token()}}
+            <div class="modal-body">
+                {{wtf.quick_form(bid_form, "/listings/{0}/bid".format(item.id))}}
             </div>
             <div class="modal-footer">
-            </form>
+                </form>
             </div>
         </div>
     </div>
