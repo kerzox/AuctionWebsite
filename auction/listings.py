@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, session, url_for, redirect
+from flask import Blueprint, render_template, request, session, url_for, redirect, flask
 from .forms import CreateListingForm, CategoryForm, AddBidForm
 from .models import Item, Bids, User
 from sqlalchemy import func
@@ -83,7 +83,9 @@ def bid(id):
             db.session.commit()
             print("Successfully added a new bid")
         else:
-            print("Failed to set bid price as new bid is lower than current.")
+            error = ("Failed to set bid price as new bid is lower than current.")
+            flash(error, 'danger')
+            return redirect(url_for('listing.item', id=id))
             return redirect(url_for('listing.item', id=id))
     return redirect(url_for('listing.item', id=id))
 
