@@ -67,14 +67,14 @@
                 <h2>Starting Bid</h2>
                 <h2><span class="badge badge-danger">${{item.start_currency}}AU</span></h2>
                 <h2>Current Bid</h2>
-                <h2><span class="badge badge-success">${{item.curr_currency}}</span></h2>
+                <h2><span class="badge badge-success">${{item.curr_currency}}AU</span></h2>
                 <h2>Number of Bids</h2>
                 <h2><span class="badge badge-primary">{{item.bids|length}}</span></h2>
             </div>
             <div class="col-lg text-center my-auto py-2">
                 <div class="col-lg text-center my-auto py-2">
                     <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
-                        data-target="#AllBids">Add bid
+                        data-target="#mo{{item.id}}">Add bid
                     </button>
                 </div>
                 <div class="col-lg text-center my-auto py-2">
@@ -88,8 +88,8 @@
         {% endfor %}
     </div>
 </div>
-
-<div class="modal fade" id="AllBids" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+{% for item in items %}
+<div class="modal fade" id="mo{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -109,5 +109,6 @@
         </div>
     </div>
 </div>
+{% endfor %}
 
 {% endblock %}
