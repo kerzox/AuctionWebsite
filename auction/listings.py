@@ -83,9 +83,8 @@ def bid(id):
             db.session.commit()
             print("Successfully added a new bid")
         else:
-            error = ("Failed to set bid price as new bid is lower than current.")
+            error = ("Bid must be higher than the current highest bid!")
             flash(error, 'danger')
-            return redirect(url_for('listing.item', id=id))
             return redirect(url_for('listing.item', id=id))
     return redirect(url_for('listing.item', id=id))
 
