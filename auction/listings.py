@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, session, url_for, redirect, flask
+from flask import Blueprint, render_template, request, session, url_for, redirect, flash
 from .forms import CreateListingForm, CategoryForm, AddBidForm
 from .models import Item, Bids, User
 from sqlalchemy import func
