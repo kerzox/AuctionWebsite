@@ -22,25 +22,26 @@
                 <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.category')}}" method="post">
                     {{form.csrf_token()}}
 
-                        <select class="form-control no-label my-1 mr-sm-2 flex-grow-1" id="category" name="category" placeholder="Category"
-                            required="">
-                            <option selected="" value="None">Select Category</option>
-                            <option value="Apple">Apple</option>
-                            <option value="Google">Google</option>
-                            <option value="Samsung">Samsung</option>
-                            <option value="Sony">Sony</option>
-                            <option value="Oppo">Oppo</option>
-                        </select>
-                        <button type="submit" id="submit" name="submit" value="Filter" class="flex-shrink-1 btn btn-primary my-1">Submit</button>
-             
-                    
+                    <select class="form-control no-label my-1 mr-sm-2 flex-grow-1" id="category" name="category"
+                        placeholder="Category" required="">
+                        <option selected="" value="None">Select Category</option>
+                        <option value="Apple">Apple</option>
+                        <option value="Google">Google</option>
+                        <option value="Samsung">Samsung</option>
+                        <option value="Sony">Sony</option>
+                        <option value="Oppo">Oppo</option>
+                    </select>
+                    <button type="submit" id="submit" name="submit" value="Filter"
+                        class="flex-shrink-1 btn btn-primary my-1">Submit</button>
+
+
                 </form>
             </div>
             <div class="col-md-5 pb-3 float-right">
                 <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}">
                     <input type="text" name="search" class="form-control flex-grow-1 my-1 mr-sm-2" placeholder="Search">
                     <button type="submit" name="search" class="flex-shrink-1 btn btn-primary my-1">Submit</button>
-                    </form>
+                </form>
             </div>
         </div>
     </div>
@@ -72,8 +73,9 @@
                 <h2>Number of Bids</h2>
                 <h2><span class="badge badge-primary">{{item.bids|length}}</span></h2>
             </div>
-            {% if item.user_id != user.id %}
             <div class="col-lg text-center my-auto py-2">
+            {% if item.user_id != user.id %}
+            {% if item.status == True %}
                 <div class="col-lg text-center my-auto py-2">
                     <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
                         data-target="#mo{{item.id}}">Add bid
@@ -85,8 +87,14 @@
                             value="{{item.id}}">Add to watchlist</button>
                     </form>
                 </div>
-            </div>
+                {% else %}
+                <div class="col-lg text-center my-auto py-2">
+                    <button type="button" class="btn btn-secondary btn-lg btn-block" data-target="#AllBids">Listing
+                        Closed</button>
+                </div>
+                {% endif %}
             {% endif %}
+            </div>
         </div>
         {% endfor %}
     </div>

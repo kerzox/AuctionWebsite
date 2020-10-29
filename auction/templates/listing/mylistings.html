@@ -17,15 +17,15 @@
         {% for item in mylist %}
         <div class="row bg-white pt-2 ml-1 mr-1 border">
             <div class="col col-lg-2 mb-3">
-                <img src="{{item.image}}"
-                    class="mx-auto img-fluid min-vh-0">
+                <img src="{{item.image}}" class="mx-auto img-fluid min-vh-0">
             </div>
             <div class="col-lg-5 mx-auto">
                 <div class="row mx-1 mb-2">
-                    <h1><a href="{{url_for('listing.item', id=item.id)}}" class="remove_link_colour">{{item.name}}</a></h1>
+                    <h1><a href="{{url_for('listing.item', id=item.id)}}" class="remove_link_colour">{{item.name}}</a>
+                    </h1>
                 </div>
                 <div class="row mx-1">
-                   {{item.description}}
+                    {{item.description}}
                 </div>
             </div>
             <div class="col-md">
@@ -37,12 +37,21 @@
                 <h2><span class="badge badge-primary">{{item.bids|length}}</span></h2>
             </div>
             <div class="col-lg text-center my-auto py-2">
+                {% if item.status == True %}
                 <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
                     data-target="#AllBids">View Bids
                 </button>
-                <form class="form-inline d-flex flex-nowrap pt-2" action="{{url_for('listing.mylistings')}}" method="post">
-                    <button class="btn btn-danger btn-lg btn-block" type="submit" name="remove" value="{{item.id}} remove">Close Listing</button>
+                <form class="form-inline d-flex flex-nowrap pt-2" action="{{url_for('listing.mylistings')}}"
+                    method="post">
+                    <button class="btn btn-danger btn-lg btn-block" type="submit" name="remove"
+                        value="{{item.id}} remove">Close Listing</button>
                 </form>
+                {% else %}
+                <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
+                    data-target="#AllBids">View Bids
+                </button>
+                <button type="button" class="btn btn-secondary btn-lg btn-block" data-target="#AllBids">Listing Closed</button>
+                {% endif %}
             </div>
         </div>
         {% endfor %}
