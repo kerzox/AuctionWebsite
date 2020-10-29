@@ -1,3 +1,4 @@
+import flask
 from flask import Blueprint, render_template, request, session, url_for, redirect, flash
 from .forms import CreateListingForm, CategoryForm, AddBidForm
 from .models import Item, Bids, User
@@ -90,12 +91,27 @@ def bid(id):
             return redirect(url_for('listing.item', id=id))
     return redirect(url_for('listing.item', id=id))
 
-@listingbp.route('/mylistings')
+@listingbp.route('/mylistings', methods=['GET', 'POST'])
 @login_required
 def mylistings():
-    mylist = Item.query.filter_by(user_id=current_user.id).all()
-    category_form = CategoryForm()
-    return render_template('listing/mylistings.html', form=category_form, mylist=mylist)
+    if flask.request.method == 'POST':
+        remove_id = request.form.get("remove")
+        if remove_id is not None:
+            if 'remove' in remove_id:
+                x = remove_id.split()
+                print(x)
+                item = Item.query.filter_by(id=x[0]).first()
+                print(item)
+                item.status = False
+                db.session.commit()
+                
+            return redirect(url_for('listing.mylistings'))
+
+        return redirect(url_for('listing.mylistings'))
+    else:
+        mylist = Item.query.filter_by(user_id=current_user.id).all()
+        category_form = CategoryForm()
+        return render_template('listing/mylistings.html', form=category_form, mylist=mylist)
 
 
 @listingbp.route('/search/category', methods=['GET', 'POST'])

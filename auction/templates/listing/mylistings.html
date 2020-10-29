@@ -40,7 +40,9 @@
                 <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
                     data-target="#AllBids">View Bids
                 </button>
-                <button type="button" class="btn btn-danger btn-lg btn-block">Close Listing</button>
+                <form class="form-inline d-flex flex-nowrap pt-2" action="{{url_for('listing.mylistings')}}" method="post">
+                    <button class="btn btn-danger btn-lg btn-block" type="submit" name="remove" value="{{item.id}} remove">Close Listing</button>
+                </form>
             </div>
         </div>
         {% endfor %}
