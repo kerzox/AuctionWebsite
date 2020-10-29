@@ -71,6 +71,7 @@
                 <h2>Number of Bids</h2>
                 <h2><span class="badge badge-primary">{{item.bids|length}}</span></h2>
             </div>
+            {% if item.user_id != user.id %}
             <div class="col-lg text-center my-auto py-2">
                 <div class="col-lg text-center my-auto py-2">
                     <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
@@ -84,6 +85,7 @@
                     </form>
                 </div>
             </div>
+            {% endif %}
         </div>
         {% endfor %}
     </div>

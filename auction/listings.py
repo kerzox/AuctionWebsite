@@ -57,7 +57,8 @@ def listings():
     items = Item.query.all()
     category_form = CategoryForm()
     bid_form = AddBidForm()
-    return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
+    user = current_user
+    return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items, user=user)
 
 
 @listingbp.route('/<id>/bid', methods=['POST'])
