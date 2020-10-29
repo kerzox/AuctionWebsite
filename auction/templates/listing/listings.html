@@ -16,15 +16,13 @@
 
 <!--Row-->
 <div class="row no-gutters mt-2 mr-1 ml-2 mb-2">
-    <div class="col-md bg-dark pt-3 pl-3 pr-3 ml-1 mt-1 justify-content-center">
+    <div class="col bg-dark pt-3 pl-3 pr-3 ml-1 mt-1 justify-content-center">
         <div class="row">
             <div class="col-md-3 pb-3">
                 <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.category')}}" method="post">
                     {{form.csrf_token()}}
 
-                    <div class="form-group required mr-3">
-
-                        <select class="form-control no-label" id="category" name="category" placeholder="Category"
+                        <select class="form-control no-label my-1 mr-sm-2 flex-grow-1" id="category" name="category" placeholder="Category"
                             required="">
                             <option selected="" value="None">Select Category</option>
                             <option value="Apple">Apple</option>
@@ -33,13 +31,16 @@
                             <option value="Sony">Sony</option>
                             <option value="Oppo">Oppo</option>
                         </select>
-
-                    </div>
-
-                    {{ form.submit(class="btn btn-primary")}}
-
-
+                        <button type="submit" id="submit" name="submit" value="Filter" class="flex-shrink-1 btn btn-primary my-1">Submit</button>
+             
+                    
                 </form>
+            </div>
+            <div class="col-md-5 pb-3 float-right">
+                <form class="form-inline d-flex flex-nowrap" action="{{url_for('listing.search')}}">
+                    <input type="text" name="search" class="form-control flex-grow-1 my-1 mr-sm-2" placeholder="Search">
+                    <button type="submit" name="search" class="flex-shrink-1 btn btn-primary my-1">Submit</button>
+                    </form>
             </div>
         </div>
     </div>
