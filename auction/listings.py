@@ -98,23 +98,25 @@ def mylistings():
     return render_template('listing/mylistings.html', form=category_form, mylist=mylist)
 
 
-@listingbp.route('/search', methods=['GET', 'POST'])
-def search():
+@listingbp.route('/search/category', methods=['GET', 'POST'])
+def category():
     category_form = CategoryForm()
     bid_form = AddBidForm()
+    user = current_user
     if category_form.validate_on_submit():
         cat = category_form.category.data
         if cat == 'None':
             items = Item.query.all()
-            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
+            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items, user=user)
         else:
             items = Item.query.filter(Item.category == cat).all()
-            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
+            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items, user=user)
     else:
         cat = request.form.get("search")
         if cat == 'All':
             items = Item.query.all()
-            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
+            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items, user=user)
         else:
             items = Item.query.filter(Item.category == cat).all()
-            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items)
+            return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items=items, user=user)
+

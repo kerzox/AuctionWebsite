@@ -14,7 +14,7 @@ def create_app():
     # Heroku postgresql
     app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
-    # local Heroku
+    # local DB
     # app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///travel.sqlite'
 
     #initialize postgres
