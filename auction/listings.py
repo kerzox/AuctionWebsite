@@ -128,6 +128,6 @@ def search():
     if request.args['search']:
         searchitem = "%" + request.args['search'] + '%'
         items = Item.query.filter(Item.name.like(searchitem)).all()
-        return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items = items)
+        return render_template('listing/listings.html', form=category_form, bid_form=bid_form, items = items, user=user)
     else:
         return redirect(url_for('listing.listings'))
