@@ -52,6 +52,7 @@
                 <h2>Number of Bids</h2>
                 <h2><span class="badge badge-primary">{{item.bids|length}}</span></h2>
             </div>
+            {% if item.status == True %}
             <div class="col-lg text-center my-auto py-2">
                 <div class="col-lg text-center my-auto py-2">
                     <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
@@ -65,6 +66,14 @@
                     </form>
                 </div>
             </div>
+            {% else %}
+            <div class="col-lg text-center my-auto py-2">
+                <div class="col-lg text-center my-auto py-2">
+                    <button type="button" class="btn btn-secondary btn-lg btn-block" data-target="#AllBids">Listing
+                        Closed</button>
+                </div>
+            </div>
+            {% endif %}
         </div>
     </div>
 </div>
@@ -73,7 +82,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="ModalLabel">All Bids</h5>
+                <h5 class="modal-title" id="ModalLabel">Add Bids</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
