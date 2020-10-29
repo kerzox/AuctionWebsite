@@ -12,7 +12,7 @@ class LoginForm(FlaskForm):
     submit = SubmitField('Login')
 
 class RegisterForm(FlaskForm):
-    user_name=StringField("Username", validators=[InputRequired('Username is required'), Length(min=4, max=20, message='Username must be between 4 and 20 characters!')])
+    user_name=StringField("Username", validators=[Regexp(r'^[\w.@+-]+$', message="Username cannot contain spaces"), InputRequired('Username is required'), Length(min=4, max=20, message='Username must be between 4 and 20 characters!')])
     email_id = StringField("Email Address", validators=[InputRequired('Email is required'), Email("Please enter a valid email")])
     contact_no = StringField("Contact Number", validators=[InputRequired('Contact Number is required')])
     address = StringField("Address", validators=[InputRequired('Address is required')])
