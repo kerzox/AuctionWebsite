@@ -52,6 +52,7 @@
                 <h2>Number of Bids</h2>
                 <h2><span class="badge badge-primary">{{item.bids|length}}</span></h2>
             </div>
+            {% if item.user_id != user.id %}
             {% if item.status == True %}
             <div class="col-lg text-center my-auto py-2">
                 <div class="col-lg text-center my-auto py-2">
@@ -73,6 +74,7 @@
                         Closed</button>
                 </div>
             </div>
+            {% endif %}
             {% endif %}
         </div>
     </div>
