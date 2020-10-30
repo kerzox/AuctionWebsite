@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, DecimalField, SelectField
 from wtforms.validators import InputRequired, Length, EqualTo, Email, NumberRange, Regexp
 from flask_wtf.file import FileRequired, FileField, FileAllowed, DataRequired
+from flask_login import login_required
 from . import db
 
 ALLOWED_FILE = {'png', 'jpg', 'JPG', 'PNG'}  
@@ -23,6 +24,7 @@ class RegisterForm(FlaskForm):
     #submit button
     submit = SubmitField("Register")
 
+@login_required
 class AddBidForm(FlaskForm):
     bid_amount = DecimalField('Bid amount', validators=[InputRequired('Bid is required'), NumberRange(min=1, max=99999999, message='Value must bebetween $1 and $99999999')])
     submit = SubmitField("Add")
