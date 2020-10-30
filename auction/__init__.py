@@ -1,5 +1,5 @@
 import os
-from flask import Flask
+from flask import Flask, render_template
 from flask_sqlalchemy import SQLAlchemy
 from flask_bootstrap import Bootstrap
 from flask_login import LoginManager
@@ -25,6 +25,14 @@ def create_app():
     login_manager = LoginManager()
     login_manager.login_view = 'authentication.login'
     login_manager.init_app(app)
+
+    # app name
+    @app.errorhandler(404) 
+  
+    # inbuilt function which takes error as parameter
+    def not_found(e): 
+    # defining function
+        return render_template("404.html") 
 
     from .models import User
     @login_manager.user_loader
