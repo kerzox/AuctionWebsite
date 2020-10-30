@@ -9,7 +9,7 @@ db=SQLAlchemy()
 # inbuilt function which takes error as parameter
 def not_found(e):
 # defining function
-    return render_template("404.html")
+    return render_template("404.html"), 404
 
 def create_app():
     print(__name__)
