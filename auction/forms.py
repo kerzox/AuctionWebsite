@@ -24,8 +24,8 @@ class RegisterForm(FlaskForm):
     #submit button
     submit = SubmitField("Register")
 
-@login_required
 class AddBidForm(FlaskForm):
+    decorators = [login_required]
     bid_amount = DecimalField('Bid amount', validators=[InputRequired('Bid is required'), NumberRange(min=1, max=99999999, message='Value must bebetween $1 and $99999999')])
     submit = SubmitField("Add")
 
