@@ -27,12 +27,11 @@ def create_app():
     login_manager.init_app(app)
 
     # app name
-    @app.errorhandler(404) 
-  
+    @app.errorhandler(404)
     # inbuilt function which takes error as parameter
-    def not_found(e): 
+    def not_found(e):
     # defining function
-        return render_template("404.html") 
+        return render_template("404.html"), 404
 
     from .models import User
     @login_manager.user_loader
