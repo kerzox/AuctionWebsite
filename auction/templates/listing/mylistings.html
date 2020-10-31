@@ -59,6 +59,7 @@
 </div>
 
 {% for item in mylist %}
+{% set NOT_FOUND = False %}
 <div class="modal fade" id="mo{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -82,6 +83,11 @@
                             {% endif %}
                         {% endfor %}
                    {% endfor %}
+                    {% if item.bids|length <= 0 %}
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <h2>No bid's have been made yet!</h2>
+                        </li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="modal-footer">
