@@ -39,7 +39,7 @@
             <div class="col-lg text-center my-auto py-2">
                 {% if item.status == True %}
                 <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
-                    data-target="#AllBids">View Bids
+                data-target="#mo{{item.id}}">View Bids
                 </button>
                 <form class="form-inline d-flex flex-nowrap pt-2" action="{{url_for('listing.mylistings')}}"
                     method="post">
@@ -48,7 +48,7 @@
                 </form>
                 {% else %}
                 <button type="button" class="btn btn-primary btn-lg btn-block" data-toggle="modal"
-                    data-target="#AllBids">View Bids
+                data-target="#mo{{item.id}}">View Bids
                 </button>
                 <button type="button" class="btn btn-secondary btn-lg btn-block" data-target="#AllBids">Listing Closed</button>
                 {% endif %}
@@ -58,7 +58,8 @@
     </div>
 </div>
 
-<div class="modal fade" id="AllBids" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
+{% for item in mylist %}
+<div class="modal fade" id="mo{{item.id}}" tabindex="-1" role="dialog" aria-labelledby="ModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -68,14 +69,26 @@
                 </button>
             </div>
             <div class="modal-body">
-                <p>User - Bid - Date</p>
-                <p>User - Bid - Date</p>
+                <ul class="list-group">
+                    {% for bids in bidlist %}
+                        {% for b in bids %}
+                            {% if item.id == b.item_id %}
+                            <li class="list-group-item d-flex justify-content-between align-items-center">
+                                <span class="badge">Date Added: {{b.bid_date}}
+                                    <h2>{{username[loop.index-1]}}</h2>
+                                </span>
+                                <h2><span class="badge badge-success">${{b.bid_amount}}<span></h2>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+                   {% endfor %}
+                </ul>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
 </div>
+{% endfor %}
 
 {% endblock %}

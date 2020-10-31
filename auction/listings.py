@@ -110,9 +110,25 @@ def mylistings():
 
         return redirect(url_for('listing.mylistings'))
     else:
+        b_items = []
+        namelist = []
+        bid_id = []
         mylist = Item.query.filter_by(user_id=current_user.id).all()
+
+        for item in mylist:
+            b_items.append(Bids.query.filter(Bids.item_id==item.id).all())
+            print(b_items)
+
+        for bids in b_items:
+            for b in bids:
+                bid_id.append(b.item_id)
+                name = User.query.filter_by(id=b.user_id).first()
+                namelist.append(name.name)
+
         category_form = CategoryForm()
-        return render_template('listing/mylistings.html', form=category_form, mylist=mylist)
+        print(namelist)
+        return render_template('listing/mylistings.html', form=category_form, mylist=mylist, bid_id=bid_id, bidlist=b_items, username=namelist)
+
 
 
 @listingbp.route('/search/category', methods=['GET', 'POST'])
