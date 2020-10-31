@@ -74,7 +74,7 @@
                         {% for b in bids %}
                             {% if item.id == b.item_id %}
                             <li class="list-group-item d-flex justify-content-between align-items-center">
-                                <span class="badge">Date Added: {{b.bid_date}}
+                                <span class="badge">Date Added: {{b.bid_date.strftime('%Y-%m-%d %H:%M:%S')}}
                                     <h2>{{username[loop.index-1]}}</h2>
                                 </span>
                                 <h2><span class="badge badge-success">${{b.bid_amount}}<span></h2>
