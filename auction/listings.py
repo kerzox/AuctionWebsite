@@ -1,5 +1,5 @@
 import flask
-from flask import Blueprint, render_template, request, session, url_for, redirect, flash
+from flask import Blueprint, render_template, request, session, url_for, redirect, flash, Flask, abort
 from .forms import CreateListingForm, CategoryForm, AddBidForm
 from .models import Item, Bids, User
 from sqlalchemy import func
@@ -16,6 +16,10 @@ def item(id):
     user = current_user
     item = Item.query.filter_by(id=id).first()
     bid = db.session.query(db.func.max(Bids.bid_amount)).filter(Bids.items.has(id=id)).scalar()
+
+    exists = db.session.query(Item.id).filter_by(id=id).scalar()
+    if (exists == None):
+        abort(404)
 
     bid_form = AddBidForm()
     return render_template('listing/item.html', item=item, bid=bid, bid_form=bid_form, user=user)
