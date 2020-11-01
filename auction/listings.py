@@ -60,7 +60,7 @@ def create():
 
 @listingbp.route('/listings')
 def listings():
-    items = Item.query.all()
+    items = Item.query.order_by(Item.id.desc()).all()
     category_form = CategoryForm()
     bid_form = AddBidForm()
     user = current_user
