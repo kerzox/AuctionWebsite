@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
-{% block content %}
 
-<div class="row px-3">
-    <div class="col-md">
-        <h1>404 Page was not found</h1>
-        <a href="{{url_for('main.index')}}">Click here to return to home</a>
+{% block content %}
+  <div class="container">
+    <div class="row mt-5">
+      <div class="col-md-12">
+
+        <h2>404 page not found</h2>
+        Click <a href="{{url_for('main.index')}}">here</a> to return to the home page
+      </div>
     </div>
-</div>
+  </div>
 
 {% endblock %}
