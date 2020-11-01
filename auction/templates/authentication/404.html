@@ -2,7 +2,11 @@
 
 {% block content %}
 
-<h1>page was not found</h1>
-<a href="base.html">return to home</a>
+<div class="row">
+    <div class="col-md px-3">
+        <h1>page was not found</h1>
+        <a href="{{url_for(main.index)}}">return to home</a>
+    </div>
+</div>
 
 {% endblock %}
