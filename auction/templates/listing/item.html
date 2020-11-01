@@ -69,16 +69,21 @@
             </div>
             {% else %}
             <div class="col-lg text-center my-auto py-2">
-            <div class="col-lg text-center my-auto py-2">
-                <button type="button" class="btn btn-success btn-lg btn-block"
-                    data-target="#AllBids">${{item.curr_currency}}AU</button>
-            </div>
-            <div class="col-lg text-center my-auto py-2">
-                <button type="button" class="btn btn-secondary btn-lg btn-block" data-target="#AllBids">Listing
-                    Closed</button>
-            </div>
+                <div class="col-lg text-center my-auto py-2">
+                    <button type="button" class="btn btn-success btn-lg btn-block">${{item.curr_currency}}AU</button>
+                </div>
+                <div class="col-lg text-center my-auto py-2">
+                    <button type="button" class="btn btn-secondary btn-lg btn-block" data-target="#AllBids">Listing
+                        Closed</button>
+                </div>
             </div>
             {% endif %}
+            {% else %}
+            <div class="col-lg text-center my-auto py-2">
+                <div class="col-lg text-center my-auto py-2">
+                    <button type="button" class="btn btn-primary btn-lg btn-block">Your Listing</button>
+                </div>
+            </div>
             {% endif %}
         </div>
     </div>
