@@ -40,8 +40,8 @@ class CreateListingForm(FlaskForm):
       # adding two validators, one to ensure input is entered and other to check if the 
       #description meets the length requirements
       description = TextAreaField('Description', 
-                                   validators=[InputRequired('Description Required - MAX 300 characters'), 
-                                   Length(min=10, max=300, message='Description too small or too large!')])
+                                   validators=[InputRequired('Description Required - MAX 500 characters'), 
+                                   Length(min=10, max=500, message='Description too small or too large!')])
       image = FileField('Upload Image', 
                         validators=[FileRequired(message="Image can not be empty"),
                         FileAllowed(ALLOWED_FILE, message="ONLY supports png, jpg, PNG, JPG")])

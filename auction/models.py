@@ -30,7 +30,7 @@ class Item(db.Model):
     __tablename__ = 'items'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    description = db.Column(db.String(200), nullable=False)
+    description = db.Column(db.String(500), nullable=False)
     image = db.Column(db.String(400))
     category = db.Column(db.String(50), nullable=False)
     status = db.Column(db.Boolean, default=True, nullable=False)
